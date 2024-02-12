@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
@@ -53,3 +54,6 @@ $response = $kernel->handle(
 )->send();
 
 $kernel->terminate($request, $response);
+
+echo User::all();
+

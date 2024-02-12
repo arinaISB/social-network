@@ -12,6 +12,7 @@ services:
     depends_on:
       - php-fpm
       - db
+
   php-fpm:
     build: docker/php
     restart: always
@@ -25,10 +26,10 @@ services:
     image: postgres:13.1
     restart: always
     environment:
-      - POSTGRES_DB=${DB_DATABASE}
-      - POSTGRES_USER=${DB_USERNAME}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-    volumes:
-      - ./sourcefiles/postgres:/var/lib/postgresql/data
+      POSTGRES_DB: "dbname"
+      POSTGRES_USER: "dbuser"
+      POSTGRES_PASSWORD: "dbpwd"
+#    volumes:
+#      - ./sourcefiles/postgres:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "54322:5432"
