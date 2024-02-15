@@ -24,7 +24,7 @@ class RegistrationRequest extends FormRequest
         return [
             'name'     => 'required|string|min:3',
             'email'    => 'required|email|unique:users',
-            'password' => 'required|current_password|min:6',
+            'password' => 'required|string|min:6|confirmed',
         ];
     }
 }

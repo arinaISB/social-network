@@ -34,17 +34,14 @@ class UserController extends Controller
     public function customRegistration(RegistrationRequest $request)
     {
         $validated = $request->validated();
-        $createUser = $this->create($validated);
-        return redirect("dashboard")->withSuccess('You have signed-in');
-    }
 
-    public function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+        $user = $this->create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
         ]);
+
+        return redirect("dashboard")->withSuccess('You have signed-in');
     }
 
     public function dashboard()
