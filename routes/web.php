@@ -24,6 +24,6 @@ Route::post('custom-registration', [UserController::class, 'customRegistration']
 Route::get('login', [UserController::class, 'login'])->name('login');
 Route::post('custom-login', [UserController::class, 'customLogin'])->name('login.custom');
 
-Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+Route::get('main-page', [UserController::class, 'mainPage'])->name('main.page');
 
 Route::get('signout', [UserController::class, 'signOut'])->name('signout');

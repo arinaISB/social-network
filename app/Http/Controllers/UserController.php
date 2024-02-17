@@ -6,11 +6,10 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-
     public function login()
     {
         return view('auth.login');
@@ -20,7 +19,7 @@ class UserController extends Controller
     {
         $credentials = $request->validated();
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')->withSuccess('Signed in');
+            return redirect()->intended('main-page')->withSuccess('Signed in');
         }
         return redirect("login")->withSuccess('Login details are not valid');
     }
@@ -34,7 +33,7 @@ class UserController extends Controller
     {
         $validated = $request->validated();
 
-        $user = $this->create([
+        $this->create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
@@ -43,10 +42,10 @@ class UserController extends Controller
         return redirect("dashboard")->withSuccess('You have signed-in');
     }
 
-    public function dashboard()
+    public function mainPage()
     {
         if (Auth::check()) {
-            return view('auth.dashboard');
+            return view('main-page');
         }
         return redirect("login")->withSuccess('You are not allowed to access');
     }
