@@ -53,10 +53,10 @@ class UserController extends Controller
             $city = $user->information->city ?? 'no info';
             $hobby = $user->information->hobby ?? 'no info';
 
-            $followers = $user->followers->count();
-            $following = $user->following->count();
+            $followers = $user->followers()->count();
+            $following = $user->following()->count();
 
-            $postsCount = $user->posts->count();
+            $postsCount = $user->posts()->count();
 
             return view('main-page', [
                 'status' => $status,

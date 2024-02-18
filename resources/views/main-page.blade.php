@@ -1,144 +1,153 @@
-<body>
+<!DOCTYPE html>
+<html>
+    <body>
 
-<div class="main-container">
+    <div class="main-container">
 
-    <!-- HEADER -->
-    <header class="block">
-        <ul class="header-menu horizontal-list">
-<!--            <li>-->
-<!--                <a class="header-menu-tab" href="#1"><span class="icon entypo-cog scnd-font-color"></span>Log out</a>-->
-<!--            </li>-->
-            <li>
-                <a class="header-menu-tab" href="#2"><span class="icon fontawesome-user scnd-font-color"></span>Account</a>
-            </li>
-            <li>
-                <a class="header-menu-tab" href="#3"><span class="icon fontawesome-envelope scnd-font-color"></span>Messages</a>
-                <a class="header-menu-number" href="#4">5</a>
-            </li>
-            <li>
-                <a class="header-menu-tab" href="#5"><span class="icon fontawesome-star-empty scnd-font-color"></span>Feed</a>
-            </li>
-            <li>
-                <a class="header-menu-tab" href="#5"><span class="icon fontawesome-star-empty scnd-font-color"></span>Subscriptions</a>
-            </li>
-            <li>
-                <a class="header-menu-tab" href="#5"><span class="icon fontawesome-star-empty scnd-font-color"></span>Notifications</a>
-            </li>
-        </ul>
-        <div class="profile-menu">
-            <p>Me <a href="#26"><span class="entypo-down-open scnd-font-color"></span></a></p>
-            <div class="profile-picture small-profile-picture">
-                <img width="40px" alt="{{ Auth::user()->name }} picture"
-                     src="{{ Auth::user()->avatar_url ?: 'https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI=' }}" >
-            </div>
-        </div>
-    </header>
-
-    <!-- LEFT-CONTAINER -->
-    <div class="left-container container">
-        <div class="menu-box block"> <!-- MENU BOX (LEFT-CONTAINER) -->
-            <h2 class="titular">MENU BOX</h2>
-            <ul class="menu-box-menu">
-<!--                <li>-->
-<!--                    <a class="menu-box-tab" href="#6"><span class="icon fontawesome-envelope scnd-font-color"></span>Messages<div class="menu-box-number">24</div></a>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <a class="menu-box-tab" href="#8"><span class="icon entypo-paper-plane scnd-font-color"></span>Subscriptions<div class="menu-box-number">3</div></a>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <a class="menu-box-tab" href="#10"><span class="icon entypo-calendar scnd-font-color"></span>Latest posts<div class="menu-box-number">3</div></a>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <a class="menu-box-tab" href="#13"><span class="icon entypo-chart-line scnd-font-color"></span>Notifications<div class="menu-box-number">3</div></a>-->
-<!--                </li>-->
+        <!-- HEADER -->
+        <header class="block">
+            <ul class="header-menu horizontal-list">
+    <!--            <li>-->
+    <!--                <a class="header-menu-tab" href="#1"><span class="icon entypo-cog scnd-font-color"></span>Log out</a>-->
+    <!--            </li>-->
                 <li>
-                    <a class="menu-box-tab" href="#12"><span class="icon entypo-cog scnd-font-color"></span>Account Settings</a>
+                    <a class="header-menu-tab" href="#2"><span class="icon fontawesome-user scnd-font-color"></span>Account</a>
+                </li>
+                <li>
+                    <a class="header-menu-tab" href="#3"><span class="icon fontawesome-envelope scnd-font-color"></span>Messages</a>
+    {{--                <a class="header-menu-number" href="#4">5</a>--}}
+                </li>
+                <li>
+                    <a class="header-menu-tab" href="#5"><span class="icon fontawesome-star-empty scnd-font-color"></span>Feed</a>
+                </li>
+                <li>
+                    <a class="header-menu-tab" href="#5"><span class="icon fontawesome-star-empty scnd-font-color"></span>Subscriptions</a>
+                </li>
+                <li>
+                    <a class="header-menu-tab" href="#5"><span class="icon fontawesome-star-empty scnd-font-color"></span>Notifications</a>
                 </li>
             </ul>
-        </div>
-        <div class="join-newsletter block">
-            <h2 class="titular">JOIN THE TELEGRAM NEWSLETTERS</h2>
-            <div class="input-container">
-                <input type="text" placeholder="Your phone number" class="phone number text-input">
-                <div class="input-icon envelope-icon-newsletter"><span class="fontawesome-envelope scnd-font-color"></span></div>
+            <div class="profile-menu">
+                <p>Me <a href="#26"><span class="entypo-down-open scnd-font-color"></span></a></p>
+                <div class="profile-picture small-profile-picture">
+                    <img width="40px" alt="{{ Auth::user()->name }} picture"
+                         src="{{ Auth::user()->avatar_url ?: 'https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI=' }}" >
+                </div>
             </div>
-            <a class="subscribe button" href="#21">SUBSCRIBE</a>
-        </div>
-    </div>
+        </header>
 
-    <!-- MIDDLE-CONTAINER -->
-    <div class="middle-container container">
-        <div class="profile block"> <!-- PROFILE (MIDDLE-CONTAINER) -->
-            <a class="add-button" href="#28"><span class="icon entypo-plus scnd-font-color"></span></a>
-            <div class="profile-picture big-profile-picture clear">
-                <img width="150px" alt="{{ Auth::user()->name }} picture"
-                     src="{{ Auth::user()->avatar_url ?: 'https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI=' }}" >
+        <!-- LEFT-CONTAINER -->
+        <div class="left-container container">
+            <div class="menu-box block"> <!-- MENU BOX (LEFT-CONTAINER) -->
+                <h2 class="titular">MENU BOX</h2>
+                <ul class="menu-box-menu">
+    <!--                <li>-->
+    <!--                    <a class="menu-box-tab" href="#6"><span class="icon fontawesome-envelope scnd-font-color"></span>Messages<div class="menu-box-number">24</div></a>-->
+    <!--                </li>-->
+    <!--                <li>-->
+    <!--                    <a class="menu-box-tab" href="#8"><span class="icon entypo-paper-plane scnd-font-color"></span>Subscriptions<div class="menu-box-number">3</div></a>-->
+    <!--                </li>-->
+    <!--                <li>-->
+    <!--                    <a class="menu-box-tab" href="#10"><span class="icon entypo-calendar scnd-font-color"></span>Latest posts<div class="menu-box-number">3</div></a>-->
+    <!--                </li>-->
+    <!--                <li>-->
+    <!--                    <a class="menu-box-tab" href="#13"><span class="icon entypo-chart-line scnd-font-color"></span>Notifications<div class="menu-box-number">3</div></a>-->
+    <!--                </li>-->
+                    <li>
+                        <a class="menu-box-tab" href="#12"><span class="icon entypo-cog scnd-font-color"></span>Account Settings</a>
+                    </li>
+                </ul>
             </div>
-            <h1 class="user-name">{{ Auth::user()->name }}</h1>
-            <div class="profile-description">
-                <p class="scnd-font-color">{{ $status }}</p>
+            <div class="join-newsletter block">
+                <h2 class="titular">JOIN THE TELEGRAM NEWSLETTERS</h2>
+                <div class="input-container">
+                    <input type="text" id="phone-number" name="phone-number" placeholder="Your phone number" class="phone number text-input">
+                    <div class="input-icon envelope-icon-newsletter"><span class="fontawesome-envelope scnd-font-color"></span></div>
+                </div>
+                <a class="subscribe button" href="#21">SUBSCRIBE</a>
             </div>
-            <ul class="profile-options horizontal-list">
-<!--                <li><a class="followers" href="#40"><p><span class="icon fontawesome-comment-alt scnd-font-color"></span>23</li></p></a>-->
-<!--                <li><a class="following" href="#41"><p><span class="icon fontawesome-eye-open scnd-font-color"></span>841</li></p></a>-->
-<!--                <li><a class="posts" href="#42"><p><span class="icon fontawesome-heart-empty scnd-font-color"></span>49</li></p></a>-->
-                <li>
-                    <a class="followers" href="#40">
-                        <p><span class="icon fontawesome-comment-alt scnd-font-color"></span>{{$postsCount}}</p>
-                        <div class="label">posts</div>
-                    </a>
-                </li>
-                <li>
-                    <a class="following" href="#41">
-                        <p><span class="icon fontawesome-eye-open scnd-font-color"></span>{{$followers}}</p>
-                        <div class="label">followers</div>
-                    </a>
-                </li>
-                <li>
-                    <a class="posts" href="#42">
-                        <p><span class="icon fontawesome-heart-empty scnd-font-color"></span>{{$following}}</p>
-                        <div class="label">following</div>
-                    </a>
-                </li>
-            </ul>
         </div>
 
-{{--        последние новости НА ДРУГУЮ СТРАНИЦУ ПЕРЕНЕСТИ--}}
-<!--        <div class="tweets block"> <!-- TWEETS (MIDDLE-CONTAINER) -->
-<!--            <h2 class="titular"><span class="icon zocial-twitter"></span>LATEST TWEETS</h2>-->
-<!--            <div class="tweet first">-->
-<!--                <p>Ice-cream trucks only play music when out of ice-cream. Well played dad. On <a class="tweet-link" href="#17">@Quora</a></p>-->
-<!--                <p><a class="time-ago scnd-font-color" href="#18">3 minutes ago</a></p>-->
-<!--            </div>-->
-<!--            <div class="tweet">-->
-<!--                <p>We are in the process of pushing out all of the new CC apps! We will tweet again once they are live <a class="tweet-link" href="#19">#CreativeCloud</a></p>-->
-<!--                <p><a class="scnd-font-color" href="#20">6 hours ago</a></p>-->
-<!--            </div>-->
-<!--        </div>-->
-    </div>
+        <!-- MIDDLE-CONTAINER -->
+        <div class="middle-container container">
+            <div class="profile block"> <!-- PROFILE (MIDDLE-CONTAINER) -->
+                <a class="add-button" href="#28"><span class="icon entypo-plus scnd-font-color"></span></a>
+                <div class="profile-picture big-profile-picture clear">
+                    <img width="150px" alt="{{ Auth::user()->name }} picture"
+                         src="{{ Auth::user()->avatar_url ?: 'https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI=' }}" >
+                </div>
+                <h1 class="user-name">{{ Auth::user()->name }}</h1>
+                <div class="profile-description">
+                    <p class="scnd-font-color">{{ $status }}</p>
+                </div>
+                <ul class="profile-options horizontal-list">
+                    <li>
+                        <a class="followers" href="#40">
+                            <p><span class="icon fontawesome-comment-alt scnd-font-color"></span>{{$followers}}</p>
+                            <div class="label">followers</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="following" href="#41">
+                            <p><span class="icon fontawesome-eye-open scnd-font-color"></span>{{$following}}</p>
+                            <div class="label">following</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="posts" href="#42">
+                            <p><span class="icon fontawesome-heart-empty scnd-font-color"></span>{{$postsCount}}</p>
+                            <div class="label">posts</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-    <!-- RIGHT-CONTAINER -->
-    <div class="right-container container">
-        <div class="introduction block">
-            <h2 class="titular">Introduction</h2>
-            <ul class="introduction-list">
-                <li>
-                    <img src="https://www.svgrepo.com/show/26693/job-search-symbol-of-suitcase-and-curriculum-paper.svg" alt="Job Icon" style="width: 24px; vertical-align: middle;">
-                    {{$job}}
-                </li>
-                <li>
-                    <img src="https://www.svgrepo.com/show/529027/home-1.svg" alt="Home Icon" style="width: 24px; vertical-align: middle;">
-                    {{$city}}
-                </li>
-                <li>
-                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009323.png" alt="Hobbies Icon" style="width: 24px; vertical-align: middle;">
-                    {{$hobby}}
-                </li>
-            </ul>
+    {{--        последние новости НА ДРУГУЮ СТРАНИЦУ ПЕРЕНЕСТИ--}}
+    <!--        <div class="tweets block"> <!-- TWEETS (MIDDLE-CONTAINER) -->
+    <!--            <h2 class="titular"><span class="icon zocial-twitter"></span>LATEST TWEETS</h2>-->
+    <!--            <div class="tweet first">-->
+    <!--                <p>Ice-cream trucks only play music when out of ice-cream. Well played dad. On <a class="tweet-link" href="#17">@Quora</a></p>-->
+    <!--                <p><a class="time-ago scnd-font-color" href="#18">3 minutes ago</a></p>-->
+    <!--            </div>-->
+    <!--            <div class="tweet">-->
+    <!--                <p>We are in the process of pushing out all of the new CC apps! We will tweet again once they are live <a class="tweet-link" href="#19">#CreativeCloud</a></p>-->
+    <!--                <p><a class="scnd-font-color" href="#20">6 hours ago</a></p>-->
+    <!--            </div>-->
+    <!--        </div>-->
         </div>
-    </div> <!-- end right-container -->
-</div> <!-- end main-container -->
-</body>
+
+        <!-- RIGHT-CONTAINER -->
+        <div class="right-container container">
+            <div class="introduction block">
+                <h2 class="titular">Introduction</h2>
+                <ul class="introduction-list">
+                    <li>
+                        <img src="https://www.svgrepo.com/show/26693/job-search-symbol-of-suitcase-and-curriculum-paper.svg" alt="Job Icon" style="width: 24px; vertical-align: middle;">
+                        {{$job}}
+                    </li>
+                    <li>
+                        <img src="https://www.svgrepo.com/show/529027/home-1.svg" alt="Home Icon" style="width: 24px; vertical-align: middle;">
+                        {{$city}}
+                    </li>
+                    <li>
+                        <img src="https://cdn-icons-png.flaticon.com/512/6009/6009323.png" alt="Hobbies Icon" style="width: 24px; vertical-align: middle;">
+                        {{$hobby}}
+                    </li>
+                </ul>
+            </div>
+            <div class="new-post-button block">
+                <a class="button" href="#new-post-container">New post</a>
+            </div>
+        </div>
+        </div> <!-- end right-container -->
+
+
+
+
+    </div> <!-- end main-container -->
+    </body>
+</html>
+
 
 <style>
     /** Inspired by: http://graphicburger.com/flat-design-ui-components/ **/
@@ -147,7 +156,7 @@
 
     /************************************ FONTS ************************************/
     @import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
-    @import url(https://weloveiconfonts.com/api/?family=entypo|fontawesome|zocial);
+    /*@import url(https://weloveiconfonts.com/api/?family=entypo|fontawesome|zocial);*/
     /* entypo */
     [class*="entypo-"]:before {
         font-family: 'entypo', sans-serif;
@@ -433,7 +442,7 @@
     .profile-menu {
         float: right;
         height: 80px;
-        padding-right: 20px;
+        padding-right: 30px;
     }
     .profile-menu p {
         font-size: 17px;
@@ -462,6 +471,7 @@
         background: #394264;
         border-radius: 5px;
     }
+
     /******************************************** LEFT CONTAINER *****************************************/
     .left-container {}
     .menu-box {
@@ -563,7 +573,7 @@
         text-align: center;
     }
     .profile-description {
-        width: 210px;
+        width: 200px;
         margin: 0 auto;
         text-align: center;
     }
@@ -571,7 +581,8 @@
         padding-top: 1px;
     }
     .profile-options li {
-        border-left: 1px solid #1f253d;
+        border: 1px solid transparent; /* Прозрачная граница для сохранения размера */
+        margin-right: -1px; /* Уменьшаем зазор между элементами списка */
     }
     .profile-options p {
         margin: 0;
@@ -701,11 +712,6 @@
         margin-top: 4px; /* Отрицательный отступ сверху, если необходимо поднять текст ближе к числу */
     }
 
-    .profile-options a p {
-        margin-bottom: 0; /* Removes the bottom margin from the <p> tag */
-    }
-
-
     /********************************************* RIGHT CONTAINER ****************************************/
     .right-container {}
     .introduction {
@@ -745,5 +751,25 @@
         color: #11a8ab; /* Цвет выделения для некоторых элементов текста */
     }
 
+    .new-post-button {
+        clear: both; /* This will ensure that the button does not float next to the other containers */
+        text-align: center;
+        padding-top: 20px;
+    }
 
+    .new-post-button .button {
+        background-color: #e64c65;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block; /* To prevent the button from stretching across the container */
+        margin-bottom: 25px; /* Adjust as needed for spacing */
+    }
+
+    .new-post-button .button:hover {
+        background-color: #cc324b; /* Darker shade on hover */
+    }
 </style>
