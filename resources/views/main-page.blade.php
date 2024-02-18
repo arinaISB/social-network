@@ -28,7 +28,8 @@
         <div class="profile-menu">
             <p>Me <a href="#26"><span class="entypo-down-open scnd-font-color"></span></a></p>
             <div class="profile-picture small-profile-picture">
-                <img width="40px" alt="Anne Hathaway picture" src="http://upload.wikimedia.org/wikipedia/commons/e/e1/Anne_Hathaway_Face.jpg">
+                <img width="40px" alt="{{ Auth::user()->name }} picture"
+                     src="{{ Auth::user()->avatar_url ?: 'https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI=' }}" >
             </div>
         </div>
     </header>
@@ -89,13 +90,13 @@
                 </li>
                 <li>
                     <a class="following" href="#41">
-                        <p><span class="icon fontawesome-eye-open scnd-font-color"></span>17.3K</p>
+                        <p><span class="icon fontawesome-eye-open scnd-font-color"></span>{{$followersCount}}</p>
                         <div class="label">followers</div>
                     </a>
                 </li>
                 <li>
                     <a class="posts" href="#42">
-                        <p><span class="icon fontawesome-heart-empty scnd-font-color"></span>891</p>
+                        <p><span class="icon fontawesome-heart-empty scnd-font-color"></span>{{$followingCount}}</p>
                         <div class="label">following</div>
                     </a>
                 </li>
@@ -123,15 +124,15 @@
             <ul class="introduction-list">
                 <li>
                     <img src="https://www.svgrepo.com/show/26693/job-search-symbol-of-suitcase-and-curriculum-paper.svg" alt="Job Icon" style="width: 24px; vertical-align: middle;">
-                    Product Designer at Bravebist</a>
+                    {{$job}}
                 </li>
                 <li>
                     <img src="https://www.svgrepo.com/show/529027/home-1.svg" alt="Home Icon" style="width: 24px; vertical-align: middle;">
-                    Live in Hanoi, Vietnam
+                    {{$city}}
                 </li>
                 <li>
                     <img src="https://cdn-icons-png.flaticon.com/512/6009/6009323.png" alt="Hobbies Icon" style="width: 24px; vertical-align: middle;">
-                    Dancing
+                    {{$hobby}}
                 </li>
             </ul>
         </div>

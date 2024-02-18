@@ -20,7 +20,9 @@ class SubscriptionFactory extends Factory
         $usersId = User::all()->pluck('id');
 
         $subscriberId = $usersId->random();
-        $subscribedToId = $usersId->except($subscriberId)->random();
+        $subscribedToId = $usersId->reject(function ($id) use ($subscriberId) {
+            return $id == $subscriberId;
+        })->random();
 
         return [
             'subscriber_id' => $subscriberId,

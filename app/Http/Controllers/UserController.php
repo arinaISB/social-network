@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
+use App\Models\Subscription;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -48,8 +49,22 @@ class UserController extends Controller
             $user = Auth::user();
 
             $status = $user->information->status ?? 'no status';
+            $job = $user->information->job ?? 'no info';
+            $city = $user->information->city ?? 'no info';
+            $hobby = $user->information->hobby ?? 'no info';
 
-            return view('main-page', ['status' => $status]);
+            $subscription = new Subscription();
+            $followersCount = $subscription->followersCount($user->id);
+            $followingCount = $subscription->followingCount($user->id);
+
+            return view('main-page', [
+                'status' => $status,
+                'job' => $job,
+                'city' => $city,
+                'hobby' => $hobby,
+                'followersCount' => $followersCount,
+                'followingCount' => $followingCount,
+                ]);
         }
         return redirect("login")->withSuccess('You are not allowed to access');
     }
