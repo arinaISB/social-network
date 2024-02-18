@@ -84,19 +84,19 @@
 <!--                <li><a class="posts" href="#42"><p><span class="icon fontawesome-heart-empty scnd-font-color"></span>49</li></p></a>-->
                 <li>
                     <a class="followers" href="#40">
-                        <p><span class="icon fontawesome-comment-alt scnd-font-color"></span>767</p>
+                        <p><span class="icon fontawesome-comment-alt scnd-font-color"></span>{{$postsCount}}</p>
                         <div class="label">posts</div>
                     </a>
                 </li>
                 <li>
                     <a class="following" href="#41">
-                        <p><span class="icon fontawesome-eye-open scnd-font-color"></span>{{$followersCount}}</p>
+                        <p><span class="icon fontawesome-eye-open scnd-font-color"></span>{{$followers}}</p>
                         <div class="label">followers</div>
                     </a>
                 </li>
                 <li>
                     <a class="posts" href="#42">
-                        <p><span class="icon fontawesome-heart-empty scnd-font-color"></span>{{$followingCount}}</p>
+                        <p><span class="icon fontawesome-heart-empty scnd-font-color"></span>{{$following}}</p>
                         <div class="label">following</div>
                     </a>
                 </li>

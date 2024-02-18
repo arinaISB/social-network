@@ -19,14 +19,4 @@ class Subscription extends Model
 
     protected $casts = [
     ];
-
-    public function followersCount($userId)
-    {
-        return $this->where('subscribed_to_id', $userId)->count();
-    }
-
-    public function followingCount($userId)
-    {
-        return $this->where('subscriber_id', $userId)->count();
-    }
 }

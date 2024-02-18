@@ -53,17 +53,19 @@ class UserController extends Controller
             $city = $user->information->city ?? 'no info';
             $hobby = $user->information->hobby ?? 'no info';
 
-            $subscription = new Subscription();
-            $followersCount = $subscription->followersCount($user->id);
-            $followingCount = $subscription->followingCount($user->id);
+            $followers = $user->followers->count();
+            $following = $user->following->count();
+
+            $postsCount = $user->posts->count();
 
             return view('main-page', [
                 'status' => $status,
                 'job' => $job,
                 'city' => $city,
                 'hobby' => $hobby,
-                'followersCount' => $followersCount,
-                'followingCount' => $followingCount,
+                'followers' => $followers,
+                'following' => $following,
+                'postsCount' => $postsCount,
                 ]);
         }
         return redirect("login")->withSuccess('You are not allowed to access');

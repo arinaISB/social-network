@@ -48,4 +48,19 @@ class User extends Authenticatable
     {
         return $this->hasOne(Information::class);
     }
+
+    public function followers()
+    {
+        return $this->hasMany(Subscription::class, 'subscribed_to_id');
+    }
+
+    public function following()
+    {
+        return $this->hasMany(Subscription::class, 'subscriber_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'author_id');
+    }
 }
