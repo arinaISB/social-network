@@ -43,4 +43,9 @@ class User extends Authenticatable
         'last_seen' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function information()
+    {
+        return $this->hasOne(Information::class);
+    }
 }

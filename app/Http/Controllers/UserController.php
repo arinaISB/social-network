@@ -45,7 +45,11 @@ class UserController extends Controller
     public function mainPage()
     {
         if (Auth::check()) {
-            return view('main-page');
+            $user = Auth::user();
+
+            $status = $user->information->status ?? 'no status';
+
+            return view('main-page', ['status' => $status]);
         }
         return redirect("login")->withSuccess('You are not allowed to access');
     }
