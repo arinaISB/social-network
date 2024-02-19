@@ -24,9 +24,10 @@
                     <a class="header-menu-tab" href="#5"><span class="icon fontawesome-star-empty scnd-font-color"></span>Notifications</a>
                 </li>
                 <li>
-                    <button id="logout-button" class="header-menu-tab">
+                    <a id="logout-button" class="header-menu-tab" href="{{ route('logout') }}">
                         <img src="https://cdn.icon-icons.com/icons2/2943/PNG/512/logout_icon_184025.png" alt="Log Out" height="20" style="vertical-align: middle; margin-right: 8px;">
-                    </button>
+                        Log out
+                    </a>
                 </li>
             </ul>
             <div class="profile-menu">
