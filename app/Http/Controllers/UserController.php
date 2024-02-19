@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
-use App\Models\Subscription;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -71,7 +70,7 @@ class UserController extends Controller
         return redirect("login")->withSuccess('You are not allowed to access');
     }
 
-    public function signOut()
+    public function logOut()
     {
         Session::flush();
         Auth::logout();

@@ -7,9 +7,6 @@
         <!-- HEADER -->
         <header class="block">
             <ul class="header-menu horizontal-list">
-    <!--            <li>-->
-    <!--                <a class="header-menu-tab" href="#1"><span class="icon entypo-cog scnd-font-color"></span>Log out</a>-->
-    <!--            </li>-->
                 <li>
                     <a class="header-menu-tab" href="#2"><span class="icon fontawesome-user scnd-font-color"></span>Account</a>
                 </li>
@@ -26,9 +23,14 @@
                 <li>
                     <a class="header-menu-tab" href="#5"><span class="icon fontawesome-star-empty scnd-font-color"></span>Notifications</a>
                 </li>
+                <li>
+                    <button id="logout-button" class="header-menu-tab">
+                        <img src="https://cdn.icon-icons.com/icons2/2943/PNG/512/logout_icon_184025.png" alt="Log Out" height="20" style="vertical-align: middle; margin-right: 8px;">
+                    </button>
+                </li>
             </ul>
             <div class="profile-menu">
-                <p>Me <a href="#26"><span class="entypo-down-open scnd-font-color"></span></a></p>
+{{--                <p>Me <a href="/logout"><span class="entypo-down-open scnd-font-color"></span></a></p>--}}
                 <div class="profile-picture small-profile-picture">
                     <img width="40px" alt="{{ Auth::user()->name }} picture"
                          src="{{ Auth::user()->avatar_url ?: 'https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI=' }}" >
@@ -101,19 +103,6 @@
                     </li>
                 </ul>
             </div>
-
-    {{--        последние новости НА ДРУГУЮ СТРАНИЦУ ПЕРЕНЕСТИ--}}
-    <!--        <div class="tweets block"> <!-- TWEETS (MIDDLE-CONTAINER) -->
-    <!--            <h2 class="titular"><span class="icon zocial-twitter"></span>LATEST TWEETS</h2>-->
-    <!--            <div class="tweet first">-->
-    <!--                <p>Ice-cream trucks only play music when out of ice-cream. Well played dad. On <a class="tweet-link" href="#17">@Quora</a></p>-->
-    <!--                <p><a class="time-ago scnd-font-color" href="#18">3 minutes ago</a></p>-->
-    <!--            </div>-->
-    <!--            <div class="tweet">-->
-    <!--                <p>We are in the process of pushing out all of the new CC apps! We will tweet again once they are live <a class="tweet-link" href="#19">#CreativeCloud</a></p>-->
-    <!--                <p><a class="scnd-font-color" href="#20">6 hours ago</a></p>-->
-    <!--            </div>-->
-    <!--        </div>-->
         </div>
 
         <!-- RIGHT-CONTAINER -->
@@ -138,11 +127,32 @@
             <div class="new-post-button block">
                 <a class="button" href="#new-post-container">New post</a>
             </div>
-        </div>
         </div> <!-- end right-container -->
 
+{{--        <!-- NEW BOTTOM CONTAINER -->--}}
+{{--        <div class="bottom-container block">--}}
+{{--            <div class="tweets block">--}}
+{{--                <h2 class="titular"><span class="icon zocial-twitter"></span>LATEST TWEETS</h2>--}}
+{{--                <div class="tweet first">--}}
+{{--                    <p>Ice-cream trucks only play music when out of ice-cream. Well played dad. On <a class="tweet-link" href="#17">@Quora</a></p>--}}
+{{--                    <p><a class="time-ago scnd-font-color" href="#18">3 minutes ago</a></p>--}}
+{{--                </div>--}}
+{{--                <div class="tweet">--}}
+{{--                    <p>We are in the process of pushing out all of the new CC apps! We will tweet again once they are live <a class="tweet-link" href="#19">#CreativeCloud</a></p>--}}
+{{--                    <p><a class="scnd-font-color" href="#20">6 hours ago</a></p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
-
+        <div class="new-post-container container block">
+            <h2 class="titular"><span class="icon zocial-post"></span>NEW POST</h2>
+            <div class="post first">
+                <label>
+                    <textarea placeholder="Write new post..." class="new-post-textarea"></textarea>
+                    <button type="button" class="publish-button">Publish</button>
+                </label>
+            </div>
+        </div>
 
     </div> <!-- end main-container -->
     </body>
@@ -382,6 +392,8 @@
         border: 2px solid #50597b;
         width: 40px;
         height: 40px;
+        position: relative;
+        top: 15px;
     }
 
 
@@ -389,13 +401,13 @@
 
     .main-container {
         font-family: 'Ubuntu', sans-serif;
-        width: 950px;
         height: 1725px;
         margin: 6em auto;
     }
     /*********************************************** HEADER ***********************************************/
     header {
         height: 80px;
+        width: calc(100% - 58px);
     }
     .header-menu {
         font-size: 17px;
@@ -403,7 +415,7 @@
     }
     .header-menu li {
         position: relative;
-        -webkit-transform: translateZ(0); /** To avoid a flash when hover messages **/
+        -webkit-transform: translateZ(0);
     }
     .header-menu-tab {
         padding: 0 27px;
@@ -471,6 +483,30 @@
         background: #394264;
         border-radius: 5px;
     }
+
+    #logout-button {
+        background: none;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        padding: 0 27px;
+        font-size: 17px;
+        line-height: 74px;
+        display: inline-block;
+        -webkit-transition: background .3s;
+        transition: background .3s;
+    }
+
+    #logout-button:hover {
+        background: #50597b;
+        border-bottom: 4px solid #11a8ab;
+    }
+
+    #logout-button img {
+        vertical-align: middle;
+        margin-right: 8px;
+    }
+
 
     /******************************************** LEFT CONTAINER *****************************************/
     .left-container {}
@@ -630,19 +666,19 @@
         font-size: 18px;
         padding-right: 20px;
     }
-    .tweet.first {
+    .post.first {
         height: 150px;
         border-bottom: 1px solid #1f253d;
     }
-    .tweet p:first-child {
+    .post p:first-child {
         margin: 0;
         padding: 30px 30px 0;
     }
-    .tweet p:last-child {
+    .post p:last-child {
         margin: 0;
         padding: 15px 30px 0;
     }
-    .tweet-link {
+    .post-link {
         color: #4fc4f6;
     }
     .middle-container .social {
@@ -733,26 +769,26 @@
     }
 
     .introduction-list li {
-        line-height: 1.6; /* Высота строки для элементов списка */
-        color: #fff; /* Цвет текста */
-        padding-left: 10px; /* Отступ для иконок */
-        position: relative; /* Для позиционирования иконок */
+        line-height: 1.6;
+        color: #fff;
+        padding-left: 10px;
+        position: relative;
     }
 
     .introduction-list .icon {
-        position: absolute; /* Абсолютное позиционирование иконок */
-        left: 0; /* Позиция слева */
-        top: 50%; /* Центрирование иконки по вертикали */
-        transform: translateY(-50%); /* Точное центрирование иконки по вертикали */
-        color: #11a8ab; /* Цвет иконки */
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #11a8ab;
     }
 
     .highlight {
-        color: #11a8ab; /* Цвет выделения для некоторых элементов текста */
+        color: #11a8ab;
     }
 
     .new-post-button {
-        clear: both; /* This will ensure that the button does not float next to the other containers */
+        clear: both;
         text-align: center;
         padding-top: 20px;
     }
@@ -765,11 +801,65 @@
         text-transform: uppercase;
         font-weight: bold;
         text-decoration: none;
-        display: inline-block; /* To prevent the button from stretching across the container */
-        margin-bottom: 25px; /* Adjust as needed for spacing */
+        display: inline-block;
+        margin-bottom: 25px;
     }
 
     .new-post-button .button:hover {
-        background-color: #cc324b; /* Darker shade on hover */
+        background-color: #cc324b;
     }
+
+    .new-post-container {
+        padding: 30px;
+        width: calc(100% - 60px);
+    }
+
+    .main-container {
+        width: auto;
+        max-width: 1010px;
+    }
+
+    .new-post-textarea {
+        width: 100%;
+        height: 100px;
+        padding: 10px;
+        margin-top: 10px;
+        background: #50597b;
+        border: 1px solid #394264;
+        color: #fff;
+        border-radius: 5px;
+        box-sizing: border-box;
+        resize: none;
+    }
+
+    .new-post-textarea::placeholder {
+        color: #9099b7;
+    }
+
+    .publish-button {
+        display: block;
+        width: 100px;
+        padding: 10px 20px;
+        margin: 10px auto;
+        background-color: #11a8ab;
+        color: #fff;
+        font-weight: bold;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        -webkit-transition: background-color .3s;
+        transition: background-color .3s;
+        border-bottom: 1px solid black;
+        box-shadow: 0px 1px 1px black;
+
+
+    }
+
+    .publish-button:hover {
+        background-color: #0F9295;
+        text-decoration: none;
+        box-sizing: border-box;
+    }
+
 </style>

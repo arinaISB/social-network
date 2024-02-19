@@ -26,4 +26,4 @@ Route::post('custom-login', [UserController::class, 'customLogin'])->name('login
 
 Route::get('main-page', [UserController::class, 'mainPage'])->name('main.page');
 
-Route::get('signout', [UserController::class, 'signOut'])->name('signout');
+Route::get('logout', [UserController::class, 'logOut'])->name('logout');
