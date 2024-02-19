@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,10 @@ Route::post('custom-registration', [UserController::class, 'customRegistration']
 
 Route::get('login', [UserController::class, 'login'])->name('login');
 Route::post('custom-login', [UserController::class, 'customLogin'])->name('login.custom');
+Route::get('logout', [UserController::class, 'logOut'])->name('logout');
 
 Route::get('main-page', [UserController::class, 'mainPage'])->name('main.page');
 
-Route::get('logout', [UserController::class, 'logOut'])->name('logout');
+Route::post('create-post', [PostController::class, 'create'])->name('post.create');
+
+

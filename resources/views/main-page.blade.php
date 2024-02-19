@@ -147,14 +147,16 @@
 
         <div class="new-post-container container block">
             <h2 class="titular"><span class="icon zocial-post"></span>NEW POST</h2>
-            <div class="post first">
+            <form method="POST" action="{{ route('post.create') }}">
+                @csrf
+                <div class="post first">
                 <label>
-                    <textarea placeholder="Write new post..." class="new-post-textarea"></textarea>
-                    <button type="button" class="publish-button">Publish</button>
+                    <textarea name="content" placeholder="Write new post..." class="new-post-textarea"></textarea>
                 </label>
-            </div>
+                    <button type="submit" class="publish-button">Publish</button>
+                </div>
+            </form>
         </div>
-
     </div> <!-- end main-container -->
     </body>
 </html>

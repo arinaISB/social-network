@@ -12,9 +12,11 @@ class PostController extends Controller
     {
         $validated = $request->validated();
 
-        $post = Post::create([
+        Post::create([
             'author_id' => Auth::id(),
-            'content' => $request->content,
+            'content'   => $validated['content'],
         ]);
+
+        return redirect()->back()->withSuccess('Post created successfully!');
     }
 }
