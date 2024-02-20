@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="eng">
     <body>
 
     <div class="main-container">
@@ -8,7 +8,7 @@
         <header class="block">
             <ul class="header-menu horizontal-list">
                 <li>
-                    <a class="header-menu-tab" href="#2"><span class="icon fontawesome-user scnd-font-color"></span>Account</a>
+                    <a class="header-menu-tab" href="account.settings"><span class="icon fontawesome-user scnd-font-color"></span>Account</a>
                 </li>
                 <li>
                     <a class="header-menu-tab" href="#3"><span class="icon fontawesome-envelope scnd-font-color"></span>Messages</a>
@@ -57,7 +57,7 @@
     <!--                    <a class="menu-box-tab" href="#13"><span class="icon entypo-chart-line scnd-font-color"></span>Notifications<div class="menu-box-number">3</div></a>-->
     <!--                </li>-->
                     <li>
-                        <a class="menu-box-tab" href="#12"><span class="icon entypo-cog scnd-font-color"></span>Account Settings</a>
+                        <a class="menu-box-tab" href="{{ route('account.settings') }}"><span class="icon entypo-cog scnd-font-color"></span>Account Settings</a>
                     </li>
                 </ul>
             </div>
