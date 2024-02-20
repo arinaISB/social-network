@@ -15,4 +15,6 @@ class InformationSeeder extends Seeder
     {
         Information::factory()->create();
     }
+
+
 }

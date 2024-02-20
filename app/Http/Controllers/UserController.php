@@ -49,10 +49,7 @@ class UserController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
 
-            $status = $user->information->status ?? 'no status';
-            $job = $user->information->job ?? 'no info';
-            $city = $user->information->city ?? 'no info';
-            $hobby = $user->information->hobby ?? 'no info';
+            $userInfo = $user->information;
 
             $followers = $user->followers()->count();
             $following = $user->following()->count();
@@ -61,14 +58,11 @@ class UserController extends Controller
             $postsCount = $userPosts->count();
 
             return view('main-page', [
-                'status' => $status,
-                'job' => $job,
-                'city' => $city,
-                'hobby' => $hobby,
-                'followers' => $followers,
-                'following' => $following,
+                'userInfo' => $userInfo,
+                'followers'  => $followers,
+                'following'  => $following,
                 'postsCount' => $postsCount,
-                'userPosts' => $userPosts,
+                'userPosts'  => $userPosts,
                 ]);
         }
         return redirect("login")->withSuccess('You are not allowed to access');

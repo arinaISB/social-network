@@ -31,7 +31,7 @@ Route::get('main-page', [UserController::class, 'mainPage'])->name('main.page');
 
 Route::post('create-post', [PostController::class, 'create'])->name('post.create');
 
-Route::get('account-settings', [AccountSettingsController::class, 'accountSettings'])->name('account.settings');
+Route::get('account-settings', [AccountSettingsController::class, 'showAccountSettings'])->name('account.settings');
 Route::post('account-settings', [AccountSettingsController::class, 'saveAccountSettings'])->name('account.settings.save');
 
 

@@ -81,7 +81,7 @@
                 </div>
                 <h1 class="user-name">{{ Auth::user()->name }}</h1>
                 <div class="profile-description">
-                    <p class="scnd-font-color">{{ $status }}</p>
+                    <p class="scnd-font-color">{{ $userInfo->status ?? 'no status' }}</p>
                 </div>
                 <ul class="profile-options horizontal-list">
                     <li>
@@ -113,15 +113,15 @@
                 <ul class="introduction-list">
                     <li>
                         <img src="https://www.svgrepo.com/show/26693/job-search-symbol-of-suitcase-and-curriculum-paper.svg" alt="Job Icon" style="width: 24px; vertical-align: middle;">
-                        {{$job}}
+                        {{ $userInfo->job ?? 'no info' }}
                     </li>
                     <li>
                         <img src="https://www.svgrepo.com/show/529027/home-1.svg" alt="Home Icon" style="width: 24px; vertical-align: middle;">
-                        {{$city}}
+                        {{ $userInfo->city ?? 'no info' }}
                     </li>
                     <li>
                         <img src="https://cdn-icons-png.flaticon.com/512/6009/6009323.png" alt="Hobbies Icon" style="width: 24px; vertical-align: middle;">
-                        {{$hobby}}
+                        {{ $userInfo->hobby ?? 'no info' }}
                     </li>
                 </ul>
             </div>
