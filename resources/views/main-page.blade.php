@@ -149,7 +149,7 @@
         @foreach($userPosts as $post)
         <div class="tweet first">
             <p>{{ $post->content }}</p>
-            <p><a class="time-ago scnd-font-color" href="#18">3 minutes ago</a></p>
+            <p><a class="time-ago scnd-font-color" href="#18">{{ $post->created_at->diffForHumans() }}</a></p>
         </div>
         @endforeach
     </div>
