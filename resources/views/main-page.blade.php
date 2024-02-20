@@ -130,21 +130,6 @@
             </div>
         </div> <!-- end right-container -->
 
-{{--        <!-- NEW BOTTOM CONTAINER -->--}}
-{{--        <div class="bottom-container block">--}}
-{{--            <div class="tweets block">--}}
-{{--                <h2 class="titular"><span class="icon zocial-twitter"></span>LATEST TWEETS</h2>--}}
-{{--                <div class="tweet first">--}}
-{{--                    <p>Ice-cream trucks only play music when out of ice-cream. Well played dad. On <a class="tweet-link" href="#17">@Quora</a></p>--}}
-{{--                    <p><a class="time-ago scnd-font-color" href="#18">3 minutes ago</a></p>--}}
-{{--                </div>--}}
-{{--                <div class="tweet">--}}
-{{--                    <p>We are in the process of pushing out all of the new CC apps! We will tweet again once they are live <a class="tweet-link" href="#19">#CreativeCloud</a></p>--}}
-{{--                    <p><a class="scnd-font-color" href="#20">6 hours ago</a></p>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
         <div class="new-post-container container block">
             <h2 class="titular"><span class="icon zocial-post"></span>NEW POST</h2>
             <form method="POST" action="{{ route('post.create') }}">
@@ -158,6 +143,17 @@
             </form>
         </div>
     </div> <!-- end main-container -->
+
+    <div class="tweets-block">
+        <h2 class="titular"><span class="icon zocial-twitter"></span>LATEST MY POSTS</h2>
+        @foreach($userPosts as $post)
+        <div class="tweet first">
+            <p>{{ $post->content }}</p>
+            <p><a class="time-ago scnd-font-color" href="#18">3 minutes ago</a></p>
+        </div>
+        @endforeach
+    </div>
+
     </body>
 </html>
 
@@ -287,7 +283,7 @@
         color: #fff;
     }
     input[type=text]:focus {
-        outline: none; /* removes the default orange border when focus */
+        outline: none;
         border: 1px solid #11a8ab;
     }
     .input-icon {
@@ -404,7 +400,7 @@
 
     .main-container {
         font-family: 'Ubuntu', sans-serif;
-        height: 1725px;
+        height: 730px;
         margin: 6em auto;
     }
     /*********************************************** HEADER ***********************************************/
@@ -620,8 +616,8 @@
         padding-top: 1px;
     }
     .profile-options li {
-        border: 1px solid transparent; /* Прозрачная граница для сохранения размера */
-        margin-right: -1px; /* Уменьшаем зазор между элементами списка */
+        border: 1px solid transparent;
+        margin-right: -1px;
     }
     .profile-options p {
         margin: 0;
@@ -659,80 +655,80 @@
     .profile-options .posts {
         border-top: 4px solid #e64c65;
     }
-    .tweets {
-        height: 375px;
-    }
-    .tweets .titular {
-        background: #35aadc;
-    }
-    .tweets .titular .icon {
-        font-size: 18px;
-        padding-right: 20px;
-    }
-    .post.first {
-        height: 150px;
-        border-bottom: 1px solid #1f253d;
-    }
-    .post p:first-child {
-        margin: 0;
-        padding: 30px 30px 0;
-    }
-    .post p:last-child {
-        margin: 0;
-        padding: 15px 30px 0;
-    }
-    .post-link {
-        color: #4fc4f6;
-    }
-    .middle-container .social {
-        height: 190px;
-        background: #1f253d;
-    }
-    .middle-container .social li {
-        margin-bottom: 12px;
-    }
-    .middle-container .social a {
-        line-height: 60px;
-    }
-    .middle-container .social a:hover {
-        text-decoration: none;
-    }
-    .middle-container .social .titular {
-        border-radius: 5px;
-    }
-    .middle-container .social .facebook {
-        background: #3468af;
-        -webkit-transition: background .3s;
-        transition: background .3s;
-    }
-    .middle-container .social a:hover .facebook {
-        background: #1a4e95;
-    }
-    .middle-container .social a:hover .icon.facebook {
-        background: #3468af;
-    }
-    .middle-container .social .twitter {
-        background: #4fc4f6;
-        -webkit-transition: background .3s;
-        transition: background .3s;
-    }
-    .middle-container .social a:hover .twitter {
-        background: #35aadc;
-    }
-    .middle-container .social a:hover .icon.twitter {
-        background: #4fc4f6;
-    }
-    .middle-container .social .googleplus {
-        background: #e64c65;
-        -webkit-transition: background .3s;
-        transition: background .3s;
-    }
-    .middle-container .social a:hover .googleplus {
-        background: #cc324b;
-    }
-    .middle-container .social a:hover .icon.googleplus {
-        background: #e64c65;
-    }
+    /*.tweets {*/
+    /*    height: 375px;*/
+    /*}*/
+    /*.tweets .titular {*/
+    /*    background: #35aadc;*/
+    /*}*/
+    /*.tweets .titular .icon {*/
+    /*    font-size: 18px;*/
+    /*    padding-right: 20px;*/
+    /*}*/
+    /*.post.first {*/
+    /*    height: 150px;*/
+    /*    border-bottom: 1px solid #1f253d;*/
+    /*}*/
+    /*.post p:first-child {*/
+    /*    margin: 0;*/
+    /*    padding: 30px 30px 0;*/
+    /*}*/
+    /*.post p:last-child {*/
+    /*    margin: 0;*/
+    /*    padding: 15px 30px 0;*/
+    /*}*/
+    /*.post-link {*/
+    /*    color: #4fc4f6;*/
+    /*}*/
+    /*.middle-container .social {*/
+    /*    height: 190px;*/
+    /*    background: #1f253d;*/
+    /*}*/
+    /*.middle-container .social li {*/
+    /*    margin-bottom: 12px;*/
+    /*}*/
+    /*.middle-container .social a {*/
+    /*    line-height: 60px;*/
+    /*}*/
+    /*.middle-container .social a:hover {*/
+    /*    text-decoration: none;*/
+    /*}*/
+    /*.middle-container .social .titular {*/
+    /*    border-radius: 5px;*/
+    /*}*/
+    /*.middle-container .social .facebook {*/
+    /*    background: #3468af;*/
+    /*    -webkit-transition: background .3s;*/
+    /*    transition: background .3s;*/
+    /*}*/
+    /*.middle-container .social a:hover .facebook {*/
+    /*    background: #1a4e95;*/
+    /*}*/
+    /*.middle-container .social a:hover .icon.facebook {*/
+    /*    background: #3468af;*/
+    /*}*/
+    /*.middle-container .social .twitter {*/
+    /*    background: #4fc4f6;*/
+    /*    -webkit-transition: background .3s;*/
+    /*    transition: background .3s;*/
+    /*}*/
+    /*.middle-container .social a:hover .twitter {*/
+    /*    background: #35aadc;*/
+    /*}*/
+    /*.middle-container .social a:hover .icon.twitter {*/
+    /*    background: #4fc4f6;*/
+    /*}*/
+    /*.middle-container .social .googleplus {*/
+    /*    background: #e64c65;*/
+    /*    -webkit-transition: background .3s;*/
+    /*    transition: background .3s;*/
+    /*}*/
+    /*.middle-container .social a:hover .googleplus {*/
+    /*    background: #cc324b;*/
+    /*}*/
+    /*.middle-container .social a:hover .icon.googleplus {*/
+    /*    background: #e64c65;*/
+    /*}*/
     .middle-container .social .icon {
         float: left;
         width: 60px;
@@ -744,25 +740,25 @@
     }
 
     .label {
-        display: block; /* Отображать как блоковый элемент, чтобы текст был на новой строке */
-        text-align: center; /* Выравнивание текста по центру */
-        color: #9099b7; /* Цвет текста */
-        font-size: 0.75em; /* Размер шрифта меньше, чем у числа */
-        margin-top: 4px; /* Отрицательный отступ сверху, если необходимо поднять текст ближе к числу */
+        display: block;
+        text-align: center;
+        color: #9099b7;
+        font-size: 0.75em;
+        margin-top: 4px;
     }
 
     /********************************************* RIGHT CONTAINER ****************************************/
     .right-container {}
     .introduction {
-        background: #394264; /* Цвет фона блока, соответствующий вашему дизайну */
+        background: #394264;
         border-radius: 5px;
         padding: 20px;
-        margin-bottom: 25px; /* Отступ снизу для отделения блоков друг от друга */
+        margin-bottom: 25px;
     }
 
     .introduction .titular {
         color: #fff;
-        margin-bottom: 15px; /* Отступ снизу заголовка */
+        margin-bottom: 15px;
     }
 
     .introduction-list {
@@ -855,14 +851,64 @@
         transition: background-color .3s;
         border-bottom: 1px solid black;
         box-shadow: 0px 1px 1px black;
-
-
     }
 
     .publish-button:hover {
         background-color: #0F9295;
         text-decoration: none;
         box-sizing: border-box;
+    }
+
+
+    .tweets-block {
+        box-sizing: border-box;
+        padding: 30px;
+        width: calc(100% - 60px);
+        background: #394264;
+        border-radius: 5px;
+        margin-bottom: 25px;
+        box-shadow: 0px 1px 1px black;
+        border: 1px solid #1f253d;
+    }
+
+    .tweets-block .titular {
+        color: #fff;
+        margin-bottom: 15px;
+        line-height: 60px;
+        text-align: center;
+        /*вот тут цвет на весь бэкграунд*/
+        background: #11a8ab;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .tweets-block .tweet {
+        background: #50597b;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 3px;
+    }
+
+    .tweet-link {
+        color: #4fc4f6;
+        text-decoration: none;
+    }
+
+    .tweet-link:hover {
+        text-decoration: underline;
+    }
+
+    .time-ago {
+        color: #9099b7;
+        font-size: 0.85em;
+    }
+
+    .tweets-block .tweet:first-child {
+        margin-top: 0;
+    }
+
+    .tweets-block .tweet:last-child {
+        margin-bottom: 0;
     }
 
 </style>

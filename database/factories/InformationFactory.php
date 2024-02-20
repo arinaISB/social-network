@@ -20,7 +20,7 @@ class InformationFactory extends Factory
         $userId = User::all()->pluck('id')->random();
 
         return [
-            'user_id' => 1,
+            'user_id' => 11,
             'status'  => $this->faker->text(50),
             'job'     => $this->faker->text(30),
             'city'    => $this->faker->text(30),

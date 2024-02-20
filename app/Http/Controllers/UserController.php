@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -56,7 +57,8 @@ class UserController extends Controller
             $followers = $user->followers()->count();
             $following = $user->following()->count();
 
-            $postsCount = $user->posts()->count();
+            $userPosts = $user->posts()->get();
+            $postsCount = $userPosts->count();
 
             return view('main-page', [
                 'status' => $status,
@@ -66,6 +68,7 @@ class UserController extends Controller
                 'followers' => $followers,
                 'following' => $following,
                 'postsCount' => $postsCount,
+                'userPosts' => $userPosts,
                 ]);
         }
         return redirect("login")->withSuccess('You are not allowed to access');
