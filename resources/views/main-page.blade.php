@@ -125,9 +125,9 @@
                     </li>
                 </ul>
             </div>
-            <div class="new-post-button block">
-                <a class="button" href="#new-post-container">New post</a>
-            </div>
+{{--            <div class="new-post-button block">--}}
+{{--                <a class="button" href="#new-post-container">New post</a>--}}
+{{--            </div>--}}
         </div> <!-- end right-container -->
 
         <div class="new-post-container container block">
@@ -863,10 +863,11 @@
     .tweets-block {
         box-sizing: border-box;
         padding: 30px;
-        width: calc(100% - 60px);
+        width: 67%;
         background: #394264;
         border-radius: 5px;
         margin-bottom: 25px;
+        margin-left: 205px; /* Center the block horizontally */
         box-shadow: 0px 1px 1px black;
         border: 1px solid #1f253d;
     }
