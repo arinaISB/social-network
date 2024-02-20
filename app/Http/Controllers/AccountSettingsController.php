@@ -42,6 +42,6 @@ class AccountSettingsController extends Controller
             $user->information()->save($information);
         }
 
-        return back()->withSuccess('Profile updated successfully.');
+        return redirect("main-page")->withSuccess('Profile updated successfully.');
     }
 }

@@ -54,7 +54,7 @@ class UserController extends Controller
             $followers = $user->followers()->count();
             $following = $user->following()->count();
 
-            $userPosts = $user->posts()->get();
+            $userPosts = $user->posts()->orderBy('created_at', 'desc')->get();
             $postsCount = $userPosts->count();
 
             return view('main-page', [
