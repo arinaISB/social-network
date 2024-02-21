@@ -28,6 +28,10 @@ Route::get('login', [UserController::class, 'login'])->name('login');
 Route::post('custom-login', [UserController::class, 'customLogin'])->name('login.custom');
 Route::get('logout', [UserController::class, 'logOut'])->name('logout');
 
+Route::get('email-verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
 Route::get('main-page', [UserController::class, 'mainPage'])->name('main.page');
 Route::get('feed', [FeedController::class, 'show'])->name('feed');
 

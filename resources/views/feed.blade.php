@@ -51,8 +51,8 @@
 <style>
     header {
         width: 67%;
-        margin-left: auto; /* Center the header horizontally */
-        margin-right: 265px; /* Center the header horizontally */
+        margin-left: auto;
+        margin-right: 265px;
         height: 80px;
         display: flex;
         align-items: center;
@@ -71,9 +71,9 @@
         align-items: center;
         padding: 0;
         margin: 0;
-        font-family: 'Ubuntu', sans-serif; /* Match the font-family as in other text elements */
-        font-size: 15px; /* Match the font-size as in other text elements */
-        color: #fff; /* Match the font-color as in other text elements */
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 15px;
+        color: #fff;
     }
 
     .header-menu li {
@@ -213,11 +213,11 @@
     }
 
     .tweets-block .tweet .author-name {
-        color: #11a8ab; /* A color that stands out */
-        font-size: 1rem; /* Match your desired font size */
-        font-weight: bold; /* Make it bold */
-        margin-top: 5px; /* Add some space above the author's name */
-        text-align: right; /* Align the author's name to the right */
+        color: #11a8ab;
+        font-size: 1rem;
+        font-weight: bold;
+        margin-top: 5px;
+        text-align: right;
     }
 
 </style>
