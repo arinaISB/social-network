@@ -58,7 +58,7 @@ class UserController extends Controller
             $postsCount = $userPosts->count();
 
             return view('main-page', [
-                'userInfo' => $userInfo,
+                'userInfo'   => $userInfo,
                 'followers'  => $followers,
                 'following'  => $following,
                 'postsCount' => $postsCount,
@@ -67,7 +67,7 @@ class UserController extends Controller
         }
         return redirect("login")->withSuccess('You are not allowed to access');
     }
-
+//подтверждение почты
     public function logOut()
     {
         Session::flush();

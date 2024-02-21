@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AccountSettingsRequest;
 use App\Models\Information;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AccountSettingsController extends Controller
 {
-    public function showAccountSettings()
+    public function show()
     {
         $user = Auth::user();
         $userInfo = $user->information;

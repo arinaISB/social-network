@@ -15,7 +15,7 @@
     {{--                <a class="header-menu-number" href="#4">5</a>--}}
                 </li>
                 <li>
-                    <a class="header-menu-tab" href="#5"><span class="icon fontawesome-star-empty scnd-font-color"></span>Feed</a>
+                    <a class="header-menu-tab" href="{{ route('feed') }}"><span class="icon fontawesome-star-empty scnd-font-color"></span>Feed</a>
                 </li>
                 <li>
                     <a class="header-menu-tab" href="#5"><span class="icon fontawesome-star-empty scnd-font-color"></span>Subscriptions</a>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountSettingsController;
+use App\Http\Controllers\FeedController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -28,10 +29,11 @@ Route::post('custom-login', [UserController::class, 'customLogin'])->name('login
 Route::get('logout', [UserController::class, 'logOut'])->name('logout');
 
 Route::get('main-page', [UserController::class, 'mainPage'])->name('main.page');
+Route::get('feed', [FeedController::class, 'show'])->name('feed');
 
 Route::post('create-post', [PostController::class, 'create'])->name('post.create');
 
-Route::get('account-settings', [AccountSettingsController::class, 'showAccountSettings'])->name('account.settings');
+Route::get('account-settings', [AccountSettingsController::class, 'show'])->name('account.settings');
 Route::post('account-settings', [AccountSettingsController::class, 'saveAccountSettings'])->name('account.settings.save');
 
 
