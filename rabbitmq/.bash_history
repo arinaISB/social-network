@@ -1,0 +1,3 @@
+rabbitmqctl list_queues
+rabbitmqctl list_exchanges
+exit
