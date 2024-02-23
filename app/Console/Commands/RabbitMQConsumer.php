@@ -12,7 +12,7 @@ class RabbitMQConsumer extends Command
      *
      * @var string
      */
-    protected $signature = 'test_consumer';
+    protected $signature = 'rabbitmq:consume';
 
     /**
      * The console command description.

@@ -21,9 +21,9 @@ class RabbitMQController extends Controller
             env('RABBITMQ_PASSWORD'),
             env('RABBITMQ_VHOST'));
         $channel = $connection->channel();
-        $channel->queue_declare('test', false, false, false, false);
+        $channel->queue_declare('hello', false, false, false, false);
         $msg = new AMQPMessage('Hello World!');
-        $channel->basic_publish($msg, '', 'test');
+        $channel->basic_publish($msg, '', 'hello');
 
         echo " [x] Sent 'Hello World!'\n";
 
