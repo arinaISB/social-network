@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountSettingsController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RabbitMQController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -23,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.layouts');
 });
+
+Route::get('publish', [RabbitMQController::class, 'publishMessage'])->name('publish');
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [UserController::class, 'registration'])->name('register');
