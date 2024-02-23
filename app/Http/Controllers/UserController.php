@@ -9,6 +9,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 
 class UserController extends Controller
 {
@@ -41,7 +43,20 @@ class UserController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        event(new Registered($user));
+        $connection = new AMQPStreamConnection(env('RABBITMQ_HOST'),
+            5672,
+            env('RABBITMQ_USER'),
+            env('RABBITMQ_PASSWORD'),
+            env('RABBITMQ_VHOST'));
+        $channel = $connection->channel();
+        $channel->queue_declare('email_queue', false, false, false, false);
+
+        $msg = new AMQPMessage("{$user->id}");
+        $channel->basic_publish($msg, '', 'email_queue');
+
+        $channel->close();
+        $connection->close();
+
 //        Auth::login($user);
 
         return redirect("login")->withSuccess('You have signed-in. Please check your email to verify your account.');
