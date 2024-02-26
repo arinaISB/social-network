@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountSettingsController;
 use App\Http\Controllers\FeedController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SendController;
 use App\Http\Controllers\TestPublishController;
@@ -23,11 +24,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.layouts');
+    return view('auth.login');
 });
 
-Route::get('send/text', [SendController::class, 'sendText']);
-
+//Route::get('send/text', [SendController::class, 'sendText']);
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [UserController::class, 'registration'])->name('register');
@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::post('create-post', [PostController::class, 'create'])->name('post.create')->middleware('verified');
     Route::get('account-settings', [AccountSettingsController::class, 'show'])->name('account.settings')->middleware('verified');
     Route::post('account-settings', [AccountSettingsController::class, 'saveAccountSettings'])->name('account.settings.save')->middleware('verified');
+    Route::post('post-like/{postId}', [LikeController::class, 'likePost'])->name('post.like')->middleware('verified');
 
     Route::get('/email/verify', function () {
         return view('auth.verify-email');

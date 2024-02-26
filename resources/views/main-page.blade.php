@@ -150,6 +150,13 @@
         <div class="tweet first">
             <p>{{ $post->content }}</p>
             <p><a class="time-ago scnd-font-color" href="#18">{{ $post->created_at->diffForHumans() }}</a></p>
+            <span>{{ $post->likes->count() }} likes</span>
+            <form action="{{ route('post.like', ['postId' => $post->id]) }}" method="POST">
+                @csrf
+                <button type="submit" style="background: none; border: none; cursor: pointer;">
+                    <img src="https://www.svgrepo.com/show/111566/like.svg" alt="Like" style="height: 20px;">
+                </button>
+            </form>
         </div>
         @endforeach
     </div>
