@@ -42,9 +42,6 @@ class UserController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-//        $rabbitmqService = new RabbitMQService();
-        Log::info('2');
-//        $rabbitmqService->publish('email_queue', $user->id);
         SendVerificationEmail::dispatch($user)->onQueue('email');
 
 
