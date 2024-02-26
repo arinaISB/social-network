@@ -6,6 +6,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
 use App\Models\User;
 use App\Services\RabbitMQService;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -41,16 +42,8 @@ class UserController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        $sendEmailCallback = function ($msg) {
-            $userId = $msg->body;
-            $user = User::findOrFail($userId);
-            event(new Registered($user));
-            echo ' [x] Email sent to ', $user, "\n";
-        };
-
         $rabbitmqService = new RabbitMQService();
         $rabbitmqService->publish('email_queue', $user->id);
-        $rabbitmqService->consume('email_queue', $sendEmailCallback);
 
         return redirect("login")->withSuccess('You have signed-in. Please check your email to verify your account.');
     }

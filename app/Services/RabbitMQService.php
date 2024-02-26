@@ -41,7 +41,7 @@ class RabbitMQService
         $channel = $this->connection->channel();
         $channel->queue_declare($queueName, false, false, false, false);
 
-        echo " [*] Waiting for messages. To exit press CTRL+C\n";
+//        echo " [*] Waiting for messages. To exit press CTRL+C\n";
 
         $channel->basic_consume($queueName, '', false, true, false, false, $callback);
         $channel->close();
