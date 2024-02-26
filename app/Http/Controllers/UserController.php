@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
+use App\Services\RabbitMQService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use PhpAmqpLib\Connection\AMQPStreamConnection;
-use PhpAmqpLib\Message\AMQPMessage;
 
 class UserController extends Controller
 {
@@ -43,21 +41,16 @@ class UserController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        $connection = new AMQPStreamConnection(env('RABBITMQ_HOST'),
-            5672,
-            env('RABBITMQ_USER'),
-            env('RABBITMQ_PASSWORD'),
-            env('RABBITMQ_VHOST'));
-        $channel = $connection->channel();
-        $channel->queue_declare('email_queue', false, false, false, false);
+        $sendEmailCallback = function ($msg) {
+            $userId = $msg->body;
+            $user = User::findOrFail($userId);
+            event(new Registered($user));
+            echo ' [x] Email sent to ', $user, "\n";
+        };
 
-        $msg = new AMQPMessage("{$user->id}");
-        $channel->basic_publish($msg, '', 'email_queue');
-
-        $channel->close();
-        $connection->close();
-
-//        Auth::login($user);
+        $rabbitmqService = new RabbitMQService();
+        $rabbitmqService->publish('email_queue', $user->id);
+        $rabbitmqService->consume('email_queue', $sendEmailCallback);
 
         return redirect("login")->withSuccess('You have signed-in. Please check your email to verify your account.');
     }
