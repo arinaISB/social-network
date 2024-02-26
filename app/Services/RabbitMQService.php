@@ -2,8 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\User;
-use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Log;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
@@ -32,19 +31,30 @@ class RabbitMQService
 
         $msg = new AMQPMessage($message);
         $channel->basic_publish($msg, '', $queueName);
+        Log::info('3');
 
         $channel->close();
     }
 
     public function consume(string $queueName, callable $callback): void
     {
+        Log::info('4');
+
         $channel = $this->connection->channel();
         $channel->queue_declare($queueName, false, false, false, false);
 
-//        echo " [*] Waiting for messages. To exit press CTRL+C\n";
+        echo " [*] Waiting for messages. To exit press CTRL+C\n";
 
         $channel->basic_consume($queueName, '', false, true, false, false, $callback);
-        $channel->close();
+//        $channel->close();
+
+        Log::info('5');
+
+        try {
+            $channel->consume();
+        } catch (\Throwable $exception) {
+            echo $exception->getMessage();
+        }
     }
 
     public function __destruct()

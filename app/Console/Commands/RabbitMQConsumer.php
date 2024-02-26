@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Services\RabbitMQService;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Console\Command;
-use PhpAmqpLib\Connection\AMQPStreamConnection;
+use Illuminate\Support\Facades\Log;
 
 class RabbitMQConsumer extends Command
 {
@@ -30,18 +30,23 @@ class RabbitMQConsumer extends Command
      */
     public function handle()
     {
+        Log::info('1');
+
         $queue = $this->argument('queue');
 
         $rabbitMQService = new RabbitMQService();
 
         $sendEmailCallback = function ($msg) {
-            $userId = $msg->body;
-            $user = User::findOrFail($userId);
+            $email = $msg->body;
+
+            Log::info('Processing message for user');
+
+            $user = User::where('email', $email)->firstOrFail();
+
             event(new Registered($user));
             echo ' [x] Email sent to ', $user, "\n";
         };
         $this->info("Consuming messages from the queue: {$queue}");
         $rabbitMQService->consume($queue, $sendEmailCallback);
-
     }
 }

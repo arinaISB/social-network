@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountSettingsController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SendController;
 use App\Http\Controllers\TestPublishController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -25,7 +26,8 @@ Route::get('/', function () {
     return view('auth.layouts');
 });
 
-Route::get('publish', [TestPublishController::class, 'publishMessage'])->name('publish');
+Route::get('send/text', [SendController::class, 'sendText']);
+
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [UserController::class, 'registration'])->name('register');
