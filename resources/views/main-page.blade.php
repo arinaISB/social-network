@@ -149,8 +149,7 @@
         @foreach($userPosts as $post)
         <div class="tweet first">
             <p>{{ $post->content }}</p>
-            <p><a class="time-ago scnd-font-color" href="#18">create {{ $post->created_at->diffForHumans() }}</a></p>
-            <p><a class="time-ago scnd-font-color" href="#18">update {{ $post->updated_at->diffForHumans() }}</a></p>
+            <p><a class="time-ago scnd-font-color" href="#18">create {{ $post->created_at->diffForHumans() }}; update {{ $post->updated_at->diffForHumans() }}   </a></p>
             <span>{{ $post->likes->count() }} likes</span>
             <form action="{{ route('post.like', ['postId' => $post->id]) }}" method="POST">
                 @csrf
@@ -158,16 +157,31 @@
                     <img src="https://www.svgrepo.com/show/111566/like.svg" alt="Like" style="height: 20px;">
                 </button>
             </form>
-            <form action="{{ route('post.edit', ['postId' => $post->id]) }}" method="POST">
+            <div class="tweet-edit-form">
+                <form action="{{ route('post.edit', ['postId' => $post->id]) }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <label>
+                        <input type="text" name="content" placeholder="Update post...">
+                    </label>
+                    <button type="submit" style="background: none; border: none; cursor: pointer;">
+                        <img src="https://static.thenounproject.com/png/684936-200.png" alt="Edit" style="height: 20px;">
+                    </button>
+                </form>
+            </div>
+            <form action="{{ route('comments.create', ['postId' => $post->id])}}" method="POST">
                 @csrf
-                @method('PATCH')
-                <label>
-                    <input type="text" name="content" placeholder="Update post...">
-                </label>
+                <input type="text" name="content" placeholder="Write a comment..." required>
                 <button type="submit" style="background: none; border: none; cursor: pointer;">
-                    <img src="https://static.thenounproject.com/png/684936-200.png" alt="Like" style="height: 20px;">
+                    <img src="https://www.svgrepo.com/show/309459/comment.svg" alt="Edit" style="height: 20px;">
                 </button>
             </form>
+            @foreach($post->comments as $comment)
+                <div class="comment">
+                    <strong>{{ $comment->user->name }}:</strong>
+                    <p>{{ $comment->content }}</p>
+                </div>
+            @endforeach
         </div>
         @endforeach
     </div>
@@ -885,13 +899,21 @@
         background: #394264;
         border-radius: 5px;
         margin-bottom: 25px;
-        margin-left: 205px; /* Center the block horizontally */
+        margin-left: 205px;
         box-shadow: 0px 1px 1px black;
         border: 1px solid #1f253d;
     }
 
+    .tweet.first {
+        justify-content: space-between;
+        align-items: start;
+        padding: 10px;
+        background: #50597b;
+        border-radius: 3px;
+    }
+
     .tweets-block input::placeholder {
-        color: #9099b7; /* Установите желаемый серый цвет */
+        color: #9099b7;
     }
 
     .tweets-block .titular {
@@ -899,7 +921,6 @@
         margin-bottom: 15px;
         line-height: 60px;
         text-align: center;
-        /*вот тут цвет на весь бэкграунд*/
         background: #11a8ab;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
@@ -932,6 +953,13 @@
 
     .tweets-block .tweet:last-child {
         margin-bottom: 0;
+    }
+
+    .comment {
+        background: #6c7293;
+        padding: 5px 10px;
+        margin-top: 10px;
+        border-radius: 5px;
     }
 
 </style>

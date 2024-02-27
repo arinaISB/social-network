@@ -40,8 +40,7 @@
         @foreach($posts as $post)
             <div class="tweet first">
                 <p>{{ $post->content }}</p>
-                <p><a class="time-ago scnd-font-color" href="#18">create {{ $post->created_at->diffForHumans() }}</a></p>
-                <p><a class="time-ago scnd-font-color" href="#18">update {{ $post->updated_at->diffForHumans() }}</a></p>
+                <p><a class="time-ago scnd-font-color" href="#18">create {{ $post->created_at->diffForHumans() }}; update {{ $post->updated_at->diffForHumans() }}</a></p>
                 <span>{{ $post->likes->count() }} likes</span>
                 <form action="{{ route('post.like', ['postId' => $post->id]) }}" method="POST">
                     @csrf
@@ -50,7 +49,23 @@
                     </button>
                 </form>
                 <p class="author-name">{{ $post->user->name }}</p>
+                <div class="comment-input-container">
+                    <form action="{{ route('comments.create', ['postId' => $post->id])}}" method="POST">
+                        @csrf
+                        <input type="text" name="content" placeholder="Write a comment..." required>
+                        <button type="submit" style="background: none; border: none; cursor: pointer;">
+                            <img src="https://www.svgrepo.com/show/309459/comment.svg" alt="Edit" style="height: 20px;">
+                        </button>
+                    </form>
+                </div>
+                @foreach($post->comments as $comment)
+                    <div class="comment">
+                        <strong>{{ $comment->user->name }}:</strong>
+                        <p>{{ $comment->content }}</p>
+                    </div>
+                @endforeach
             </div>
+
         @endforeach
     </div>
 
@@ -168,6 +183,10 @@
         border: 1px solid #1f253d;
     }
 
+    .tweets-block input::placeholder {
+        color: #9099b7;
+    }
+
     .tweets-block .titular {
         color: #fff;
         margin-bottom: 15px;
@@ -227,5 +246,43 @@
         margin-top: 5px;
         text-align: right;
     }
+
+    .comment {
+        background: #6c7293;
+        padding: 5px 10px;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+
+    .comment-input-container input[type="text"] {
+        width: calc(100% - 700px); /* Adjusted for padding */
+        height: 50px;
+        padding-left: 45px;
+        margin-left: 20px; /* Match the first view's input margin */
+        background: #50597b;
+        color: #fff;
+        border: solid 1px #1f253d;
+        border-radius: 5px;
+        font-family: 'Ubuntu', sans-serif; /* Match the font from the first view */
+    }
+
+    .comment-input-container input[type="text"]::placeholder {
+        color: #9099b7;
+    }
+
+    .comment-input-container input[type="text"]:focus {
+        outline: none;
+        border: 1px solid #11a8ab;
+    }
+
+    .comment-input-container .input-icon {
+        font-size: 22px;
+        position: absolute;
+        left: 15px; /* Match the first view's icon position */
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9099b7; /* Match the first view's icon color */
+    }
+
 
 </style>

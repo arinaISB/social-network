@@ -20,4 +20,9 @@ class Comment extends Model
 
     protected $casts = [
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
