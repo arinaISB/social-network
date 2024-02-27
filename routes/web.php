@@ -43,7 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::post('create-post', [PostController::class, 'create'])->name('post.create')->middleware('verified');
     Route::get('account-settings', [AccountSettingsController::class, 'show'])->name('account.settings')->middleware('verified');
     Route::post('account-settings', [AccountSettingsController::class, 'saveAccountSettings'])->name('account.settings.save')->middleware('verified');
-    Route::post('post-like/{postId}', [LikeController::class, 'likePost'])->name('post.like')->middleware('verified');
+    Route::post('post-like/{postId}', [LikeController::class, 'like'])->name('post.like')->middleware('verified');
+    Route::patch('post-edit/{postId}', [PostController::class, 'edit'])->name('post.edit')->middleware('verified');
 
     Route::get('/email/verify', function () {
         return view('auth.verify-email');

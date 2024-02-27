@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
-    public function likePost($postId)
+    public function like($postId)
     {
         $user = Auth::user();
         $post = Post::findOrFail($postId);

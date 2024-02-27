@@ -40,7 +40,8 @@
         @foreach($posts as $post)
             <div class="tweet first">
                 <p>{{ $post->content }}</p>
-                <p><a class="time-ago scnd-font-color" href="#18">{{ $post->created_at->diffForHumans() }}</a></p>
+                <p><a class="time-ago scnd-font-color" href="#18">create {{ $post->created_at->diffForHumans() }}</a></p>
+                <p><a class="time-ago scnd-font-color" href="#18">update {{ $post->updated_at->diffForHumans() }}</a></p>
                 <span>{{ $post->likes->count() }} likes</span>
                 <form action="{{ route('post.like', ['postId' => $post->id]) }}" method="POST">
                     @csrf

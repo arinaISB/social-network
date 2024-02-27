@@ -149,7 +149,8 @@
         @foreach($userPosts as $post)
         <div class="tweet first">
             <p>{{ $post->content }}</p>
-            <p><a class="time-ago scnd-font-color" href="#18">{{ $post->created_at->diffForHumans() }}</a></p>
+            <p><a class="time-ago scnd-font-color" href="#18">create {{ $post->created_at->diffForHumans() }}</a></p>
+            <p><a class="time-ago scnd-font-color" href="#18">update {{ $post->updated_at->diffForHumans() }}</a></p>
             <span>{{ $post->likes->count() }} likes</span>
             <form action="{{ route('post.like', ['postId' => $post->id]) }}" method="POST">
                 @csrf
@@ -157,10 +158,19 @@
                     <img src="https://www.svgrepo.com/show/111566/like.svg" alt="Like" style="height: 20px;">
                 </button>
             </form>
+            <form action="{{ route('post.edit', ['postId' => $post->id]) }}" method="POST">
+                @csrf
+                @method('PATCH')
+                <label>
+                    <input type="text" name="content" placeholder="Update post...">
+                </label>
+                <button type="submit" style="background: none; border: none; cursor: pointer;">
+                    <img src="https://static.thenounproject.com/png/684936-200.png" alt="Like" style="height: 20px;">
+                </button>
+            </form>
         </div>
         @endforeach
     </div>
-
     </body>
 </html>
 
@@ -266,6 +276,7 @@
     .input-container {
         position: relative;
     }
+
     input[type=text]{
         width: 260px;
         height: 50px;
@@ -877,6 +888,10 @@
         margin-left: 205px; /* Center the block horizontally */
         box-shadow: 0px 1px 1px black;
         border: 1px solid #1f253d;
+    }
+
+    .tweets-block input::placeholder {
+        color: #9099b7; /* Установите желаемый серый цвет */
     }
 
     .tweets-block .titular {
