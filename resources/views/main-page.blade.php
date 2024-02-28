@@ -128,6 +128,15 @@
 {{--            <div class="new-post-button block">--}}
 {{--                <a class="button" href="#new-post-container">New post</a>--}}
 {{--            </div>--}}
+            <div class="weather-information block">
+                <h2 class="titular">WEATHER INFORMATION</h2>
+                <ul class="weather-details">
+                    <li class="weather-icon clear-sky">Location: {{ $weather['location'] ?? '-' }}</li>
+                    <li class="temperature">Temperature: {{ $weather['temperature'] ?? '-' }}</li>
+                    <li class="weather-icon">Weather: {{ $weather['weather'] ?? '-' }}</li>
+                    <li class="temperature">Wind: {{ $weather['wind'] ?? '-' }}</li>
+                </ul>
+            </div>
         </div> <!-- end right-container -->
 
         <div class="new-post-container container block">
@@ -687,80 +696,7 @@
     .profile-options .posts {
         border-top: 4px solid #e64c65;
     }
-    /*.tweets {*/
-    /*    height: 375px;*/
-    /*}*/
-    /*.tweets .titular {*/
-    /*    background: #35aadc;*/
-    /*}*/
-    /*.tweets .titular .icon {*/
-    /*    font-size: 18px;*/
-    /*    padding-right: 20px;*/
-    /*}*/
-    /*.post.first {*/
-    /*    height: 150px;*/
-    /*    border-bottom: 1px solid #1f253d;*/
-    /*}*/
-    /*.post p:first-child {*/
-    /*    margin: 0;*/
-    /*    padding: 30px 30px 0;*/
-    /*}*/
-    /*.post p:last-child {*/
-    /*    margin: 0;*/
-    /*    padding: 15px 30px 0;*/
-    /*}*/
-    /*.post-link {*/
-    /*    color: #4fc4f6;*/
-    /*}*/
-    /*.middle-container .social {*/
-    /*    height: 190px;*/
-    /*    background: #1f253d;*/
-    /*}*/
-    /*.middle-container .social li {*/
-    /*    margin-bottom: 12px;*/
-    /*}*/
-    /*.middle-container .social a {*/
-    /*    line-height: 60px;*/
-    /*}*/
-    /*.middle-container .social a:hover {*/
-    /*    text-decoration: none;*/
-    /*}*/
-    /*.middle-container .social .titular {*/
-    /*    border-radius: 5px;*/
-    /*}*/
-    /*.middle-container .social .facebook {*/
-    /*    background: #3468af;*/
-    /*    -webkit-transition: background .3s;*/
-    /*    transition: background .3s;*/
-    /*}*/
-    /*.middle-container .social a:hover .facebook {*/
-    /*    background: #1a4e95;*/
-    /*}*/
-    /*.middle-container .social a:hover .icon.facebook {*/
-    /*    background: #3468af;*/
-    /*}*/
-    /*.middle-container .social .twitter {*/
-    /*    background: #4fc4f6;*/
-    /*    -webkit-transition: background .3s;*/
-    /*    transition: background .3s;*/
-    /*}*/
-    /*.middle-container .social a:hover .twitter {*/
-    /*    background: #35aadc;*/
-    /*}*/
-    /*.middle-container .social a:hover .icon.twitter {*/
-    /*    background: #4fc4f6;*/
-    /*}*/
-    /*.middle-container .social .googleplus {*/
-    /*    background: #e64c65;*/
-    /*    -webkit-transition: background .3s;*/
-    /*    transition: background .3s;*/
-    /*}*/
-    /*.middle-container .social a:hover .googleplus {*/
-    /*    background: #cc324b;*/
-    /*}*/
-    /*.middle-container .social a:hover .icon.googleplus {*/
-    /*    background: #e64c65;*/
-    /*}*/
+
     .middle-container .social .icon {
         float: left;
         width: 60px;
@@ -889,6 +825,56 @@
         background-color: #0F9295;
         text-decoration: none;
         box-sizing: border-box;
+    }
+
+    .weather-information {
+        background: #50597b;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+    }
+
+    .weather-information .titular {
+        background: linear-gradient(45deg, #11a8ab, #1f253d);
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 5px;
+        margin: -20px -20px 20px -20px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .weather-details {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .weather-details li {
+        font-size: 18px;
+        padding: 5px 0;
+        border-bottom: 1px solid #6c7293;
+    }
+
+    .weather-details li:last-child {
+        border-bottom: none;
+    }
+
+    .weather-icon {
+        padding-right: 10px;
+        color: #11a8ab;
+    }
+
+    .clear-sky .weather-icon:before {
+        content: '\f00d';
+    }
+
+    .clouds .weather-icon:before {
+        content: '\f0c2';
+    }
+
+    .temperature {
+        color: #ffcc00;
     }
 
 

@@ -255,15 +255,15 @@
     }
 
     .comment-input-container input[type="text"] {
-        width: calc(100% - 700px); /* Adjusted for padding */
+        width: calc(100% - 700px);
         height: 50px;
         padding-left: 45px;
-        margin-left: 20px; /* Match the first view's input margin */
+        margin-left: 20px;
         background: #50597b;
         color: #fff;
         border: solid 1px #1f253d;
         border-radius: 5px;
-        font-family: 'Ubuntu', sans-serif; /* Match the font from the first view */
+        font-family: 'Ubuntu', sans-serif;
     }
 
     .comment-input-container input[type="text"]::placeholder {
@@ -278,11 +278,9 @@
     .comment-input-container .input-icon {
         font-size: 22px;
         position: absolute;
-        left: 15px; /* Match the first view's icon position */
+        left: 15px;
         top: 50%;
         transform: translateY(-50%);
-        color: #9099b7; /* Match the first view's icon color */
+        color: #9099b7;
     }
-
-
 </style>

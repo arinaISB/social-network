@@ -59,12 +59,16 @@ class UserController extends Controller
             $userPosts = $user->posts()->orderBy('created_at', 'desc')->get();
             $postsCount = $userPosts->count();
 
+            $api = new ApiController();
+            $weather = $api->getWeather();
+
             return view('main-page', [
                 'userInfo'   => $userInfo,
                 'followers'  => $followers,
                 'following'  => $following,
                 'postsCount' => $postsCount,
                 'userPosts'  => $userPosts,
+                'weather'    => $weather,
                 ]);
         }
         return redirect("login")->withSuccess('You are not allowed to access');
