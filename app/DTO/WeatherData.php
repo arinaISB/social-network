@@ -2,8 +2,6 @@
 
 namespace App\DTO;
 
-use Illuminate\Support\Facades\Log;
-
 class WeatherData
 {
     private string $location;
@@ -41,8 +39,6 @@ class WeatherData
 
     public static function create(string $location, string $temperature, string $description, string $wind): WeatherData
     {
-        Log::info('3');
-
         return new self($location, $temperature, $description, $wind);
     }
 }

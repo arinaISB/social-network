@@ -6,6 +6,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
 use App\Jobs\SendVerificationEmail;
 use App\Models\User;
+use App\Services\GeoCodingService;
 use App\Services\WeatherService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -61,11 +62,15 @@ class UserController extends Controller
             $userPosts = $user->posts()->orderBy('created_at', 'desc')->get();
             $postsCount = $userPosts->count();
 
-            $lat = '55.44';
-            $lon = '37.30';
-            $appId = 'eb8b3f28b6ee398fdd56e0f734771b22';
-            Log::info('1');
-            $weather = WeatherService::extractWeatherData($lat, $lon, $appId);
+            $cityUser = $user->information->city ?? null;
+
+            Log::info("$cityUser");
+            if ($cityUser)
+            {
+                $appId = 'eb8b3f28b6ee398fdd56e0f734771b22';
+                $coordinates = GeoCodingService::getCoordinates($cityUser, $appId);
+                $weather = WeatherService::extractWeatherData($coordinates->getLat(), $coordinates->getLon(), $appId);
+            }
 
             return view('main-page', [
                 'userInfo'   => $userInfo,
@@ -73,7 +78,7 @@ class UserController extends Controller
                 'following'  => $following,
                 'postsCount' => $postsCount,
                 'userPosts'  => $userPosts,
-                'weather'    => $weather,
+                'weather'    => $weather ?? '',
                 ]);
         }
         return redirect("login")->withSuccess('You are not allowed to access');
