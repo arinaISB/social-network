@@ -64,7 +64,6 @@ class UserController extends Controller
 
             $cityUser = $user->information->city ?? null;
 
-            Log::info("$cityUser");
             if ($cityUser)
             {
                 $appId = 'eb8b3f28b6ee398fdd56e0f734771b22';
@@ -78,7 +77,7 @@ class UserController extends Controller
                 'following'  => $following,
                 'postsCount' => $postsCount,
                 'userPosts'  => $userPosts,
-                'weather'    => $weather ?? '',
+                'weather'    => $weather ?? null,
                 ]);
         }
         return redirect("login")->withSuccess('You are not allowed to access');
