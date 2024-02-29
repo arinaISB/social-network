@@ -18,7 +18,7 @@ class ApiController extends Controller
             $response = Http::timeout(5)->get($url);
 //            dd($data = $response->json());
             $data = $response->json();
-            return $this->formatWeatherData($data);
+            return $this->formatWeatherData($data);//возвращать объект dto
 
         } catch (\Throwable $exception) {
             return ('error');

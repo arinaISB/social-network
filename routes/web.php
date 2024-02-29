@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::post('post-like/{postId}', [LikeController::class, 'like'])->name('post.like')->middleware('verified');
     Route::patch('post-edit/{postId}', [PostController::class, 'edit'])->name('post.edit')->middleware('verified');
     Route::post('post-comment/{postId}', [CommentController::class, 'create'])->name('comments.create')->middleware('verified');
-    Route::get('weather', [ApiController::class, 'getWeather'])->name('weather')->middleware('verified');
+    Route::get('weather', [UserController::class, 'mainPage'])->name('weather')->middleware('verified');
 
     Route::get('/email/verify', function () {
         return view('auth.verify-email');

@@ -131,10 +131,10 @@
             <div class="weather-information block">
                 <h2 class="titular">WEATHER INFORMATION</h2>
                 <ul class="weather-details">
-                    <li class="weather-icon clear-sky">Location: {{ $weather['location'] ?? '-' }}</li>
-                    <li class="temperature">Temperature: {{ $weather['temperature'] ?? '-' }}</li>
-                    <li class="weather-icon">Weather: {{ $weather['weather'] ?? '-' }}</li>
-                    <li class="temperature">Wind: {{ $weather['wind'] ?? '-' }}</li>
+                    <li class="weather-icon clear-sky">Location: {{ $weather->getLocation() ?? '-' }}</li>
+                    <li class="temperature">Temperature: {{ $weather->getTemperature() ?? '-' }}</li>
+                    <li class="weather-icon">Weather: {{ $weather->getDescription() ?? '-' }}</li>
+                    <li class="temperature">Wind: {{ $weather->getWind() ?? '-' }}</li>
                 </ul>
             </div>
         </div> <!-- end right-container -->

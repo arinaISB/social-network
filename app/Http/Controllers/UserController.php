@@ -6,8 +6,10 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
 use App\Jobs\SendVerificationEmail;
 use App\Models\User;
+use App\Services\WeatherService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -59,8 +61,11 @@ class UserController extends Controller
             $userPosts = $user->posts()->orderBy('created_at', 'desc')->get();
             $postsCount = $userPosts->count();
 
-            $api = new ApiController();
-            $weather = $api->getWeather();
+            $lat = '55.44';
+            $lon = '37.30';
+            $appId = 'eb8b3f28b6ee398fdd56e0f734771b22';
+            Log::info('1');
+            $weather = WeatherService::extractWeatherData($lat, $lon, $appId);
 
             return view('main-page', [
                 'userInfo'   => $userInfo,
