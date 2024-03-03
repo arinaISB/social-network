@@ -132,9 +132,9 @@
                 <h2 class="titular">WEATHER INFORMATION</h2>
                 <ul class="weather-details">
                     <li class="weather-icon clear-sky">Location: {{ $weather ? $weather->getLocation() : '-' }}</li>
-                    <li class="temperature">Temperature: {{ $weather ? $weather->getTemperature() : '-' }}</li>
+                    <li class="temperature">Temperature: {{ $weather ? $weather->getTemperature() . ' °C' : '-' }}</li>
                     <li class="weather-icon">Weather: {{ $weather ? $weather->getDescription() : '-' }}</li>
-                    <li class="temperature">Wind: {{ $weather ? $weather->getWind() : '-' }}</li>
+                    <li class="temperature">Wind: {{ $weather ? $weather->getWind() . ' m/s' : '-' }}</li>
                 </ul>
             </div>
         </div> <!-- end right-container -->

@@ -7,6 +7,7 @@ use App\Http\Requests\RegistrationRequest;
 use App\Jobs\SendVerificationEmail;
 use App\Models\User;
 use App\Services\GeoCodingService;
+use App\Services\WeatherGeoService;
 use App\Services\WeatherService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -66,9 +67,8 @@ class UserController extends Controller
 
             if ($cityUser)
             {
-                $appId = 'eb8b3f28b6ee398fdd56e0f734771b22';
-                $coordinates = GeoCodingService::getCoordinates($cityUser, $appId);
-                $weather = WeatherService::extractWeatherData($coordinates->getLat(), $coordinates->getLon(), $appId);
+                $weatherGeoService = new WeatherGeoService();
+                $weather =  $weatherGeoService->getWeatherDataByCityName($cityUser);
             }
 
             return view('main-page', [
