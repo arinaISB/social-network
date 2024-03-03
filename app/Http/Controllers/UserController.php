@@ -6,12 +6,9 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
 use App\Jobs\SendVerificationEmail;
 use App\Models\User;
-use App\Services\GeoCodingService;
 use App\Services\WeatherGeoService;
-use App\Services\WeatherService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -50,7 +47,7 @@ class UserController extends Controller
         return redirect("login")->withSuccess('You have signed-in. Please check your email to verify your account.');
     }
 
-    public function mainPage()
+    public function mainPage(WeatherGeoService $weatherGeoService)
     {
         if (Auth::check()) {
             $user = Auth::user();
@@ -67,7 +64,6 @@ class UserController extends Controller
 
             if ($cityUser)
             {
-                $weatherGeoService = new WeatherGeoService();
                 $weather =  $weatherGeoService->getWeatherDataByCityName($cityUser);
             }
 
