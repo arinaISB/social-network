@@ -79,6 +79,12 @@
                     <img width="150px" alt="{{ Auth::user()->name }} picture"
                          src="{{ Auth::user()->avatar_url ?: 'https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI=' }}" >
                 </div>
+                <form action="{{ route('upload.image') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="image" class="form-control">
+                    <button type="submit" class="btn btn-success">Upload</button>
+                </form>
+
                 <h1 class="user-name">{{ Auth::user()->name }}</h1>
                 <div class="profile-description">
                     <p class="scnd-font-color">{{ $userInfo->status ?? 'no status' }}</p>
@@ -427,15 +433,30 @@
         border: 5px solid #50597b;
         width: 150px;
         height: 150px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center
     }
+
+    .big-profile-picture img,
+    .small-profile-picture img {
+        object-fit: cover; /* Cover the entire area of the container */
+        border-radius: 50%; /* Make the image round */
+        width: 100%; /* Set width to 100% of the container */
+        height: 100%; /* Set height to 100% of the container */
+    }
+
     .small-profile-picture {
         border: 2px solid #50597b;
         width: 40px;
         height: 40px;
         position: relative;
         top: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center
     }
-
 
     /** MAIN CONTAINER **/
 

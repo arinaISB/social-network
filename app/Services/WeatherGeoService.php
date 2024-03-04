@@ -39,10 +39,6 @@ class WeatherGeoService
     {
         $coordinates = $this->getCoordinates($cityName);
 
-        if (!$coordinates) {
-            return null;
-        }
-
         $weatherUrl = "{$this->baseUrl}/data/2.5/weather";
 
         $response = Http::get($weatherUrl, [
