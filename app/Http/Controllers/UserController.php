@@ -9,8 +9,8 @@ use App\Jobs\SendVerificationEmail;
 use App\Models\User;
 use App\Services\ImageService;
 use App\Services\WeatherGeoService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -39,13 +39,17 @@ class UserController extends Controller
     {
         $validated = $request->validated();
 
-        $user = User::create([
-            'name'     => $validated['name'],
-            'email'    => $validated['email'],
-            'password' => Hash::make($validated['password']),
-        ]);
+        DB::transaction(function () use ($validated)
+        {
+            $user = User::create([
+                'name'     => $validated['name'],
+                'email'    => $validated['email'],
+                'password' => Hash::make($validated['password']),
+            ]);
 
-        SendVerificationEmail::dispatch($user)->onQueue('email');
+            SendVerificationEmail::dispatch($user)->onQueue('email');
+        });
+
 
         return redirect("login")->withSuccess('You have signed-in. Please check your email to verify your account.');
     }
