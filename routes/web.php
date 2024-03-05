@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('post-edit/{postId}', [PostController::class, 'edit'])->name('post.edit')->middleware('verified');
     Route::post('post-comment/{postId}', [CommentController::class, 'create'])->name('comments.create')->middleware('verified');
     Route::get('weather', [UserController::class, 'mainPage'])->name('weather')->middleware('verified');
-    Route::post('upload-image', [ImageUploadController::class, 'upload'])->name('upload.image')->middleware('verified');
+    Route::post('upload-image', [ImageUploadController::class, 'uploadAvatar'])->name('upload.image')->middleware('verified');
 
 
     Route::get('/email/verify', function () {

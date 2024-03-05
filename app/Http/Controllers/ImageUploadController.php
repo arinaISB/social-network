@@ -9,9 +9,8 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageUploadController extends Controller
 {
-    public function upload(Request $request)
+    public function uploadAvatar(Request $request)
     {
-        Log::info($request->all());
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -20,11 +19,9 @@ class ImageUploadController extends Controller
             $file = $request->file('image');
             $filename = $file->hashName();
             $extension = $file->extension();
-            Log::info('1');
 
             $path = Storage::disk('public')->putFileAs('images', $file, $filename);
-
-            Log::info($path);
+//согласованность данных, удалить загруженный файл из диска unlink. try catch
             $image = Image::create([
                 'user_id' => auth()->user()->id,
                 'name'    => $filename,
