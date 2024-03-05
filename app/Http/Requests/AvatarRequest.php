@@ -23,7 +23,6 @@ class AvatarRequest extends FormRequest
     {
         return [
             'image'   => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'user_id' => 'sometimes|exists:users,id',
         ];
     }
 }

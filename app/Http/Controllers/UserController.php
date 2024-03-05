@@ -50,7 +50,6 @@ class UserController extends Controller
             SendVerificationEmail::dispatch($user)->onQueue('email');
         });
 
-
         return redirect("login")->withSuccess('You have signed-in. Please check your email to verify your account.');
     }
 
@@ -83,6 +82,7 @@ class UserController extends Controller
                 'weather'    => $weather ?? null,
                 ]);
         }
+
         return redirect("login")->withSuccess('You are not allowed to access');
     }
 
@@ -90,15 +90,20 @@ class UserController extends Controller
     {
         $validated = $request->validated();
 
-        $imageService->uploadAvatar($validated['image'], $validated['user_id'] ?? null);
+        $success = $imageService->uploadAvatar($validated['image'], Auth::id());
 
-        return back()->with('success', 'Image uploaded successfully');
+        if ($success) {
+            return back()->with('success', 'Image uploaded successfully');
+        } else {
+            return back()->with('error', 'Failed to upload image');
+        }
     }
 
     public function logOut()
     {
         Session::flush();
         Auth::logout();
+
         return redirect('login');
     }
 }

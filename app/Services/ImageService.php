@@ -4,18 +4,17 @@ namespace App\Services;
 
 use App\Models\Image;
 use App\Models\User;
+use GuzzleHttp\Psr7\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class ImageService
 {
-    public function uploadAvatar($file, $userId): void
+    public function uploadAvatar(UploadedFile $file, int $userId): void
     {
-        $filename = $file->hasName();
+        $filename = $file->hashName();
         $extension = $file->extension();
-
-        $userId = $userId ?? Auth::id();
 
         try {
             $path = Storage::disk('public')->putFileAs('images', $file, $filename);
@@ -28,13 +27,13 @@ class ImageService
             ]);
 
             $user = User::findOrFail($userId);
-            if (!$user) {
-                throw new \Exception("User {$userId} not found");
-            }
             $user->avatar_url = '/storage/' . $path;
             $user->save();
         } catch (\Throwable $exception) {
-            Storage::disk('public')->delete($path);
+            if ($path && Storage::disk('public')->exists($path))
+            {
+                Storage::disk('public')->delete($path);
+            }
             Log::error("Failed to upload avatar for user {$userId}: {$exception->getMessage()}");
         }
     }
