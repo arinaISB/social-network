@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageService
 {
-    public function uploadAvatar(UploadedFile $file, int $userId): void
+    public function uploadAvatar(UploadedFile $file, int $userId): bool
     {
         $filename = $file->hashName();
         $extension = $file->extension();
@@ -29,12 +29,15 @@ class ImageService
             $user = User::findOrFail($userId);
             $user->avatar_url = '/storage/' . $path;
             $user->save();
+
+            return true;
         } catch (\Throwable $exception) {
             if ($path && Storage::disk('public')->exists($path))
             {
                 Storage::disk('public')->delete($path);
             }
             Log::error("Failed to upload avatar for user {$userId}: {$exception->getMessage()}");
+            return false;
         }
     }
 }
