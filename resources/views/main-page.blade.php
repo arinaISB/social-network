@@ -79,11 +79,13 @@
                     <img width="150px" alt="{{ Auth::user()->name }} picture"
                          src="{{ Auth::user()->avatar_url ?: 'https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI=' }}" >
                 </div>
+{{--                isNotAdmin--}}
                 <form action="{{ route('upload.image') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="image" class="form-control">
                     <button type="submit" class="btn btn-success">Upload</button>
                 </form>
+{{----}}
 
                 <h1 class="user-name">{{ Auth::user()->name }}</h1>
                 <div class="profile-description">
@@ -649,7 +651,7 @@
         margin: 0 25px;
     }
     .profile {
-        height: 375px;
+        height: 400px;
     }
     .add-button .icon {
         float: right;

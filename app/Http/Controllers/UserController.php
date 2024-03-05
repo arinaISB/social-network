@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
 use App\Jobs\SendVerificationEmail;
 use App\Models\User;
+use App\Services\ImageService;
 use App\Services\WeatherGeoService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -77,6 +80,15 @@ class UserController extends Controller
                 ]);
         }
         return redirect("login")->withSuccess('You are not allowed to access');
+    }
+
+    public function uploadAvatar(AvatarRequest $request, ImageService $imageService)
+    {
+        $validated = $request->validated();
+
+        $imageService->uploadAvatar($validated['image'], $validated['user_id'] ?? null);
+
+        return back()->with('success', 'Image uploaded successfully');
     }
 
     public function logOut()
