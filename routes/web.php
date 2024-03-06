@@ -67,3 +67,7 @@ Route::middleware('auth')->group(function () {
         return back()->with('message', 'Verification link sent!');
     })->name('verification.send')->middleware('throttle:6,1');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

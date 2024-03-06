@@ -1,7 +1,8 @@
-@extends('auth.layouts')
+@extends('layouts.app')
 @section('content')
     <main class="login-form">
         <div class="container">
+            <example-component></example-component>
             <div class="row justify-content-center">
                 <div class="col-md-4">
                     <div class="card">
