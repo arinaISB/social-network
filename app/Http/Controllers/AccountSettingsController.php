@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AccountSettingsRequest;
 use App\Models\Information;
 use Illuminate\Support\Facades\Auth;
+use http\Exception\InvalidArgumentException;
 
 class AccountSettingsController extends Controller
 {
