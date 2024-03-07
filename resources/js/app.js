@@ -16,7 +16,7 @@ import { createApp } from 'vue';
 
 const app = createApp({});
 
-import ExampleComponent from './components/ExampleComponent.vue';
-app.component('example-component', ExampleComponent);
+import PostComponent from "./components/PostComponent.vue";
+app.component('post-component', PostComponent);
 
 app.mount('#app');
