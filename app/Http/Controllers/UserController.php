@@ -25,7 +25,10 @@ class UserController extends Controller
     {
         $credentials = $request->validated();
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('main-page')->withSuccess('Signed in');
+            $user = Auth::user();
+            $token = $user->createToken('API Token')->plainTextToken;
+            return redirect()->intended('feed')->with('token', $token);
+//            return redirect()->intended('main-page')->withSuccess('Signed in');
         }
 
         return redirect("login")->withSuccess('Login details are not valid');
