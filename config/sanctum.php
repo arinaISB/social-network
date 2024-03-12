@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\Sanctum;
 
 return [
@@ -15,7 +16,7 @@ return [
     |
     */
 
-    'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
+   'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
         '%s%s',
         'localhost:8080,localhost:3000,127.0.0.1,127.0.0.1:8080,::1',
         Sanctum::currentApplicationUrlWithPort()
@@ -81,3 +82,4 @@ return [
     ],
 
 ];
+

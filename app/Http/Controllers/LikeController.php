@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class LikeController extends Controller
 {
@@ -12,14 +13,19 @@ class LikeController extends Controller
         $user = Auth::user();
         $post = Post::findOrFail($postId);
 
-        if ($post->likes()->where('user_id', $user->id)->exists()) {
+        $isLiked = $post->likes()->where('user_id', $user->id)->exists();
+
+        if ($isLiked) {
             $post->likes()->where('user_id', $user->id)->delete();
+            $liked = false;
         } else {
             $post->likes()->create([
                 'user_id' => $user->id
             ]);
+
+            $liked = true;
         }
 
-        return back();
+        return response()->json(['liked' => $liked]);
     }
 }

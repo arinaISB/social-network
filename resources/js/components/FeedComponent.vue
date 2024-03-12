@@ -32,38 +32,36 @@ import { ref } from 'vue';
 import { defineProps } from 'vue';
 import moment from 'moment';
 
+
 const timeAgo = (datetime) => {
     return moment(datetime).fromNow();
 }
-
 
 const props = defineProps({
     posts: {
         type: Array,
     },
-
-    authToken: {
-        type: String,
-    },
-
 });
 
+const authToken = localStorage.getItem('token');
+
 const commentContent = ref('');
-
+//api route login
 const likePost = (postId) => {
-    // fetch('https:/localhost:8080/api/post/like/7')
-    //     .then(response => response.json())
-    //     .then(data => console.log(data))
-    //     .catch(error => console.error('Fetch error:', error));
-
-    axios.post('/api/post/like/' + postId, {}, {
+    //localstorage
+    //запрос на аутентификацию
+    axios.post('api/post/like/' + postId, {}, {
         withCredentials: true,
         headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${props.authToken}`,
+            Authorization: `Bearer ${authToken}`,
         }
     })
         .then(response => {
+            const updatedPost = props.posts.find(post => post.id === postId);
+
+            updatedPost.likes_count = response.data.likes_count;
+
             console.log('Liked post with ID:', postId);
         })
         .catch(error => {
@@ -72,7 +70,10 @@ const likePost = (postId) => {
 }
 
 const createComment = (postId) => {
-    axios.post('/api/post/like/' + postId)
+    axios.post('./../routes/api/comments/create/' + postId, {
+        post_id: postId,
+        content: commentContent.value
+    })
         .then(response => {
             console.log('Creating comment for post with ID:', postId);
 

@@ -12,6 +12,7 @@ use App\Services\WeatherGeoService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -27,7 +28,9 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $token = $user->createToken('API Token')->plainTextToken;
-            return redirect()->intended('feed')->with('token', $token);
+
+
+//            return redirect()->intended('feed')->with('token', $token);
 //            return redirect()->intended('main-page')->withSuccess('Signed in');
         }
 
