@@ -32,7 +32,6 @@ Route::get('login', function () {
 Route::middleware('auth:api')->group(function () {
     Route::post('post/like/{postId}', [LikeController::class, 'like'])->name('api.post.like');
     Route::post('comments/create/{postId}', [CommentController::class, 'create'])->name('api.comments.create');
-    Route::get('feed', [FeedController::class, 'show'])->name('api.feed');
 
 });
 

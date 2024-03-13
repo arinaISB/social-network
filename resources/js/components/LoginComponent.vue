@@ -47,13 +47,13 @@ const remember = ref(false);
 
 
 const handleLogin = () => {
-    console.log('handle login')
+    console.log('handle axios login')
     axios.post('/api/login', {email: email.value, password: password.value})
         .then(response => {
             const url = response.data.url;
             localStorage.setItem('token', response.data.token);
             success.value = 'Login successful!';
-            console.log('переход')
+            console.log('редирект на ')
             window.location.href = url;
             console.log(window.location.href)
         })

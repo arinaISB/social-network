@@ -19,12 +19,12 @@ class AuthController extends Controller
             $token = auth()->user()->createToken('API Token')->plainTextToken;
             Log::info('User logged in successfully. Token: ' . $token);
 
-//            return response()->json(['token' => $token]);
             return response()->json([
-                'url' => '/api/feed',
+                'url' => 'feed',
                 'token' => $token
             ]);
         }
+
         Log::error('Failed login attempt.');
         return response()->json(['error' => 'Unauthorized']);
     }
