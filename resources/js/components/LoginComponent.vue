@@ -50,20 +50,32 @@ const handleLogin = () => {
     console.log('handle axios login')
     axios.post('/api/login', {email: email.value, password: password.value})
         .then(response => {
-            const url = response.data.url;
-            localStorage.setItem('token', response.data.token);
-            success.value = 'Login successful!';
-            console.log('редирект на ')
-            window.location.href = url;
-            console.log(window.location.href)
+            const token = response.data.token;
+            localStorage.setItem('token', token);
+            success.value = 'Api login successful';
+            console.log('токен', token);
+
+            axios.post('/custom-login', {
+                token: localStorage.getItem('token'),
+                email: email.value,
+                password: password.value
+            })
+                .then(response => {
+                    window.location.href = '/feed';
+                    console.log('Второй запрос выполнен успешно');
+                })
+                .catch(error => {
+                    console.error('Second Login error:', error);
+                });
+
         })
         .catch(error => {
             errors.value = error.response.data.errors;
             console.error('Login error:', error);
         });
 }
-
 </script>
+
 
 <style scoped>
 

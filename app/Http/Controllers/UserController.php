@@ -9,6 +9,7 @@ use App\Jobs\SendVerificationEmail;
 use App\Models\User;
 use App\Services\ImageService;
 use App\Services\WeatherGeoService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -26,7 +27,6 @@ class UserController extends Controller
     {
         $credentials = $request->validated();
         if (Auth::attempt($credentials)) {
-            $user = Auth::user();
             Log::info('web login');
             return redirect()->intended('feed')->withSuccess('Signed in');
         }

@@ -24,14 +24,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    \Illuminate\Support\Facades\Log::info('jfjfjdf');
+    \Illuminate\Support\Facades\Log::info('home page and redirect to login page from web.php');
     return view('auth.login');
 });
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [UserController::class, 'registration'])->name('register');
     Route::post('custom-registration', [UserController::class, 'customRegistration'])->name('register.custom');
-    Route::get('login', [UserController::class, 'login'])->name('login');
+//    Route::get('login', [UserController::class, 'login'])->name('login');
     Route::post('custom-login', [UserController::class, 'customLogin'])->name('login.custom');
 });
 

@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [AuthController::class, 'login']);
 Route::get('login', function () {
-    \Illuminate\Support\Facades\Log::info('api login');
+    \Illuminate\Support\Facades\Log::info('get api login page');
     return view('auth.login');
 });
 
