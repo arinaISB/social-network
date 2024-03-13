@@ -37,7 +37,7 @@
     </header>
 
     <div id="app">
-        <feed-component :posts="{{ $posts }}"></feed-component>
+        <feed-component :posts="{{ json_encode($posts) }}"></feed-component>
     </div>
 </body>
 </html>

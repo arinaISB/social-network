@@ -4,7 +4,7 @@
         <div v-for="post in props.posts" :key="post.id" class="tweet first">
             <p>{{ post.content }}</p>
             <p><a class="time-ago scnd-font-color" href="#18">created {{ timeAgo(post.created_at) }}; updated {{ timeAgo(post.updated_at) }}</a></p>
-            <span>{{ post.likes_count }} likes</span>
+            <span>{{ getLikesCount(post.id)}} likes</span>
             <form @submit.prevent="likePost(post.id)">
                 <button type="submit" style="background: none; border: none; cursor: pointer;">
                     <img src="https://www.svgrepo.com/show/111566/like.svg" alt="Like" style="height: 20px;">
@@ -31,7 +31,8 @@
 import { ref } from 'vue';
 import { defineProps } from 'vue';
 import moment from 'moment';
-
+import { reactive } from "vue";
+import { computed } from "vue";
 
 const timeAgo = (datetime) => {
     return moment(datetime).fromNow();
@@ -43,14 +44,15 @@ const props = defineProps({
     },
 });
 
+const likesCount = reactive({});
+
 const authToken = localStorage.getItem('token');
 
 const commentContent = ref('');
-//api route login
+
 const likePost = (postId) => {
-    //localstorage
-    //запрос на аутентификацию
-    axios.post('api/post/like/' + postId, {}, {
+
+    axios.post('post-like/' + postId, {}, {
         withCredentials: true,
         headers: {
             "Content-Type": "multipart/form-data",
@@ -58,15 +60,22 @@ const likePost = (postId) => {
         }
     })
         .then(response => {
-            const updatedPost = props.posts.find(post => post.id === postId);
+            const liked = response.data.liked;
 
-            updatedPost.likes_count = response.data.likes_count;
-
-            console.log('Liked post with ID:', postId);
+            const currentLikesCount = getLikesCount(postId).value;
+            likesCount[postId] = liked ? currentLikesCount + 1 : currentLikesCount - 1;
         })
         .catch(error => {
             console.error('Error liking post:', error)
         });
+}
+
+const getLikesCount = (postId) => {
+    return computed(() => {
+        const count = likesCount[postId] ?? props.posts.find(post => post.id === postId).likes_count;
+        return count >= 0 ? count : 0;
+
+    });
 }
 
 const createComment = (postId) => {
