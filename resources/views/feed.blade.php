@@ -9,7 +9,7 @@
             </li>
             <li>
                 <a class="header-menu-tab" href="#3"><span class="icon fontawesome-envelope scnd-font-color"></span>Messages</a>
-                                <a class="header-menu-number" href="#4">5</a>
+{{--                                <a class="header-menu-number" href="#4">5</a>--}}
             </li>
             <li>
                 <a class="header-menu-tab" href="{{ route('feed') }}"><span class="icon fontawesome-star-empty scnd-font-color"></span>Feed</a>

@@ -53,8 +53,8 @@ const handleLogin = () => {
             const token = response.data.token;
             localStorage.setItem('token', token);
             success.value = 'Api login successful';
-            console.log('токен', token);
 
+            //костыль
             axios.post('/custom-login', {
                 token: localStorage.getItem('token'),
                 email: email.value,
@@ -78,5 +78,4 @@ const handleLogin = () => {
 
 
 <style scoped>
-
 </style>
