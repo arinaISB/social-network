@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::post('post-comment/{postId}', [CommentController::class, 'create'])->name('comments.create')->middleware('verified');
     Route::get('weather', [UserController::class, 'mainPage'])->name('weather')->middleware('verified');
     Route::post('upload-image', [UserController::class, 'uploadAvatar'])->name('upload.image')->middleware('verified');
+    Route::get('comments', [CommentController::class, 'getAll'])->name('comments')->middleware('verified');
 
 
     Route::get('/email/verify', function () {

@@ -23,9 +23,11 @@ class CommentController extends Controller
         $post->comments_count = $post->comments()->count();
         $post->save();
 
-        return response()->json([
-            //username
-            'content' => $comment,
-        ]);
+        return response()->json($comment);
+    }
+
+    public function getAll()
+    {
+        return response()->json(Comment::all());
     }
 }
