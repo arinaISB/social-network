@@ -7,7 +7,7 @@
             <span>{{ getLikesCount(post.id)}} likes</span>
             <form @submit.prevent="likePost(post.id)">
                 <button type="submit" style="background: none; border: none; cursor: pointer;">
-                    <img src="https://www.svgrepo.com/show/111566/like.svg" alt="Like" style="height: 20px;">
+                    <img src="https://www.svgrepo.com/show/111566/like.svg" alt="Like" class="like-icon">
                 </button>
             </form>
             <p class="author-name">{{ post.user.name }}</p>
@@ -15,7 +15,7 @@
                 <form @submit.prevent="createComment(post.id)">
                     <input type="text" v-model="post.newCommentText" placeholder="Write a comment..." required>
                     <button type="submit" style="background: none; border: none; cursor: pointer;">
-                        <img src="https://www.svgrepo.com/show/309459/comment.svg" alt="Edit" style="height: 20px;">
+                        <img src="https://www.svgrepo.com/show/309459/comment.svg" alt="Edit" class="comment-icon">
                     </button>
                 </form>
             </div>
@@ -58,7 +58,7 @@ props.posts.forEach(post => {
 
     likesCount[post.id] = ref(0);
 });
-
+console.log(props.posts);
 const likePost = (postId) => {
     axios.post('post-like/' + postId, {}, {
         headers: {
@@ -97,8 +97,7 @@ const createComment =  (postId) => {
         content: post.newCommentText
     })
         .then(response => {
-            console.log('Creating comment for post with ID:', postId, response.data);
-            comments.value.push(response.data);
+            // console.log('Creating comment for post with ID:', postId, response.data);
             loadComments();
             post.newCommentText = '';
         })
@@ -111,7 +110,7 @@ const loadComments = () => {
     axios.get('comments')
         .then(response => {
             comments.value = response.data;
-            console.log(response.data);
+            // console.log(response.data);
         })
         .catch(error => {
             console.error('Error fetching comments:', error);
@@ -253,9 +252,9 @@ const filteredComments = (postId) => {
     font-size: 0.85em;
 }
 
-.comment-content {
-    color: #fff;
-    margin-left: 20px;
+.like-icon,
+.comment-icon {
+    height: 20px;
 }
 
 </style>

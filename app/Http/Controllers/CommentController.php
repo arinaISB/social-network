@@ -28,6 +28,7 @@ class CommentController extends Controller
 
     public function getAll()
     {
-        return response()->json(Comment::all());
+        $comments = Comment::with('user')->get();
+        return response()->json($comments);
     }
 }
