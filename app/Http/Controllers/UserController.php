@@ -9,6 +9,7 @@ use App\Jobs\SendVerificationEmail;
 use App\Models\User;
 use App\Services\ImageService;
 use App\Services\WeatherGeoService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -90,7 +91,7 @@ class UserController extends Controller
         return redirect("login")->withSuccess('You are not allowed to access');
     }
 
-    public function uploadAvatar(AvatarRequest $request, ImageService $imageService)
+    public function uploadAvatar(AvatarRequest $request, ImageService $imageService): RedirectResponse
     {
         $validated = $request->validated();
 

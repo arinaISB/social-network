@@ -4,8 +4,7 @@ namespace App\Services;
 
 use App\Models\Image;
 use App\Models\User;
-use GuzzleHttp\Psr7\UploadedFile;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 

@@ -156,15 +156,6 @@ const filteredComments = (postId) => {
     border-radius: 3px;
 }
 
-.tweet-link {
-    color: #4fc4f6;
-    text-decoration: none;
-}
-
-.tweet-link:hover {
-    text-decoration: underline;
-}
-
 .time-ago {
     color: #9099b7;
     font-size: 0.85em;
@@ -204,6 +195,7 @@ const filteredComments = (postId) => {
     padding: 5px 10px;
     margin-top: 10px;
     border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .comment-input-container input[type="text"] {
@@ -225,6 +217,19 @@ const filteredComments = (postId) => {
 .comment-input-container input[type="text"]:focus {
     outline: none;
     border: 1px solid #11a8ab;
+}
+
+.comment-input-container button[type="submit"]:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.comment-input-container button[type="submit"]:focus {
+    outline: none;
+}
+
+.comment-input-container button[type="submit"]:active {
+    transform: translateY(1px);
 }
 
 .comment-input-container .input-icon {
@@ -255,6 +260,24 @@ const filteredComments = (postId) => {
 .like-icon,
 .comment-icon {
     height: 20px;
+}
+
+.like-icon:hover,
+.comment-icon:hover {
+    opacity: 50%;
+    cursor: pointer;
+}
+
+.comment a.time-ago {
+    color: #fff;
+    background-color: #6c7293;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.8em;
+}
+
+.comment a.time-ago:hover {
+    text-decoration: underline;
 }
 
 </style>
