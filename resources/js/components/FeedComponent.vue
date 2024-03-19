@@ -58,7 +58,7 @@ props.posts.forEach(post => {
 
     likesCount[post.id] = ref(0);
 });
-console.log(props.posts);
+// console.log(props.posts);
 const likePost = (postId) => {
     axios.post('post-like/' + postId, {}, {
         headers: {

@@ -104,6 +104,18 @@ class UserController extends Controller
         }
     }
 
+    public function getAvatar()
+    {
+        $user = Auth::user();
+
+        if ($user && $user->avatar_url)
+        {
+            return response()->json(['avatar_url' => $user->avatar_url]);
+        }
+
+        return response()->json(['avatar_url' => null]);
+    }
+
     public function logOut()
     {
         Session::flush();
